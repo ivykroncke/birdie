@@ -1,24 +1,16 @@
-# README
+## Birdie
+### An Backyard Birdwatching App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app makes tracking the birds in your own back yard fun. Brag to your friends about your oriole sightings! Track when the hummingbirds start to arrive every year. 
 
-Things you may want to cover:
+[app here]
 
-* Ruby version
+## Planning
 
-* System dependencies
+### Trello Board:
 
-* Configuration
+### Wireframes
 
-* Database creation
+## Future Dev
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Credits
