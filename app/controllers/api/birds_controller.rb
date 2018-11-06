@@ -18,13 +18,15 @@ def create
     render json: @bird
 end
 
-def delete
-    @bird = Bird.destroy(params[:id])
+def destroy
+    @bird = Bird.find(params[:id]).delete
     render status: 200
 end
 
+
 def bird_params
-    params.require(:bird).permit(:name, :description, :image:)
+    params.require(:bird).permit(:name, :description, :image)
 end
+
 
 end
