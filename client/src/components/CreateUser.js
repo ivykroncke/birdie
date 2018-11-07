@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -29,7 +30,8 @@ export default class CreateUser extends Component {
     newUser: {
       username: '',
       emailaddress: ''
-    }
+    },
+    lastCreatedUserId: 0
   }
 
   handleChange = (event) => {
@@ -38,13 +40,37 @@ export default class CreateUser extends Component {
     this.setState({ newUser })
   }
 
+  getNewUserId = async () => {
+    const response = await axios.get('/api/users')
+    const indexOfNewest = response.data.length - 1
+    console.log("index of newest user", indexOfNewest)
+    const idOfNewest = response.data[indexOfNewest].id
+    console.log("id of newest user", idOfNewest)
+    console.log(typeof idOfNewest)
+    this.saveNewUserId(idOfNewest)
+  }
+
+  saveNewUserId = (idOfNewest) => {
+    let newId = { ...this.state.lastCreatedUserId }
+    newId = idOfNewest
+    this.setState ({ lastCreatedUserId: newId })
+  }
+
   addUser = async (event) => {
     event.preventDefault()
     await axios.post('/api/users', this.state.newUser)
+    this.getNewUserId()
   }
 
-
   render() {
+    const userId = this.state.lastCreatedUserId
+
+    if (this.state.lastCreatedUserId) {
+      return (
+        <Redirect to={`/users/${userId}/dashboard`} />
+      )
+    }
+
     return (
       <AddUserContainer>
         <form>

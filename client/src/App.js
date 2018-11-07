@@ -25,7 +25,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route exact path="/users/" component={Login} />
-            <Route exact path="/users/:userId/dashboard" component={Dashboard} />
+            <Route exact path="/users/:id/dashboard" component={Dashboard} />
           </Switch>
         </Router>
       </AppWrapper>
