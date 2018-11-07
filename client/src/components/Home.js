@@ -27,7 +27,7 @@ export default class Home extends Component {
     return (
       <HomeWrapper>
         <AppName>birdie</AppName>
-        <StyledLogin to="/login">Login</StyledLogin>
+        <StyledLogin to="/users">Login</StyledLogin>
       </HomeWrapper>
     )
   }

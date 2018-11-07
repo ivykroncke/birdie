@@ -20,7 +20,7 @@ const StyledUsers = styled.div`
 text-align: center;
 `
 
-const StyledUser = styled.div`
+const StyledUser = styled(Link)`
 padding: 1rem;
 `
 
@@ -33,12 +33,13 @@ margin: 2rem;
 
 export default class Login extends Component {
   state = {
-    users : [
-      {username: "Ivy"},
-      {username: "Fritz"},
-      {username: "Charlotte"}
-    ],
+    users : [],
     createNewUserToggle: true
+  }
+
+  componentDidMount = async () => {
+    const response = await axios.get('/api/users/')
+    this.setState({ users: response.data })
   }
 
   toggleCreateNewUser = () => {
@@ -49,7 +50,7 @@ export default class Login extends Component {
 
     const UsersList = this.state.users.map((user, i) => {
       return (
-      <StyledUser key={i}>
+      <StyledUser to={`/users/${user.id}/dashboard/`} key={i}>
         <div>{user.username} </div> 
       </StyledUser>
       )

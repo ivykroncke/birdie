@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Home from './components/Home';
 import Login from './components/Login';
+import Dashboard from './components/Dashboard'
 import styled from 'styled-components'
 
 const AppWrapper = styled.div`
@@ -23,7 +24,8 @@ class App extends Component {
         <Router>
           <Switch>
             <Route exact path="/" component={Home}/>
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/users/" component={Login} />
+            <Route exact path="/users/:userId/dashboard" component={Dashboard} />
           </Switch>
         </Router>
       </AppWrapper>
