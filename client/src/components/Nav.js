@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const NavContainer = styled.div`
@@ -14,17 +15,23 @@ font-size: 2rem;
 margin-left: 5vw;
 `
 
-const StyledUserIcon = styled.div`
+const StyledLinkToUser = styled(Link)`
 font-size: 1rem;
 margin-right: 5vw;
 `
 
 export default class Nav extends Component {
+
   render() {
+
+    const userId = this.props.users.id
+
     return (
       <NavContainer>
         <SiteTitle>birdie</SiteTitle>
-          <StyledUserIcon>{this.props.users.username}</StyledUserIcon>
+        <StyledLinkToUser to={`/users/${userId}/edit`}> 
+          {this.props.users.username}
+        </StyledLinkToUser>
       </NavContainer>
     )
   }

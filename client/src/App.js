@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard'
 import styled from 'styled-components'
+import EditDeleteUser from './components/EditDeleteUser';
 
 const AppWrapper = styled.div`
 @import url('https://fonts.googleapis.com/css?family=Lora|Roboto');
@@ -26,6 +27,7 @@ class App extends Component {
             <Route exact path="/" component={Home}/>
             <Route exact path="/users/" component={Login} />
             <Route exact path="/users/:id/dashboard" component={Dashboard} />
+            <Route exact path="users/:id/edit" component={EditDeleteUser} />
           </Switch>
         </Router>
       </AppWrapper>
