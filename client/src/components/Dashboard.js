@@ -13,24 +13,33 @@ width: 100vw;
 `
 
 export default class Dashboard extends Component {
-  //all properties for that user
   state = {
-    user: {},
-    posts: {}
+    users: {},
+    posts: [],
+    showUserPosts: false
   }
 
   componentDidMount = async () => {
     const userId = this.props.match.params.id
     const response = await axios.get(`/api/users/${userId}`)
-    this.setState({ user: response.data })
+    const postResponse = await axios.get(`/api/users/${userId}/posts/`)
+    this.setState({ users: response.data, posts: postResponse.data })  
+  }
+
+  toggleAllPostsById = () => {
+    this.setState({
+      showUserPosts: !this.state.showUserPosts
+    })
   }
 
   render() {
     return (
       <DashContainer>
-       <Nav user={this.state.user}/>
-       <DashMenu />
-       <AllPostsById />
+       <Nav users={this.state.users}/>
+       <DashMenu toggleAllPostsById={this.toggleAllPostsById} />
+        { this.state.showUserPosts ? 
+          (<AllPostsById posts={this.state.posts}/>) : null
+        }
        <AllPostsByAllUsers /> 
       </DashContainer>
     )

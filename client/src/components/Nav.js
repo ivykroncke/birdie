@@ -24,7 +24,7 @@ export default class Nav extends Component {
     return (
       <NavContainer>
         <SiteTitle>birdie</SiteTitle>
-          <StyledUserIcon>{this.props.user.username}</StyledUserIcon>
+          <StyledUserIcon>{this.props.users.username}</StyledUserIcon>
       </NavContainer>
     )
   }

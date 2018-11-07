@@ -32,7 +32,7 @@ export default class DashMenu extends Component {
       <DashMenuContainer>
           <DashGrid>
             <DashTile><div>New Post</div></DashTile>
-            <DashTile><div>Field Journal</div></DashTile>
+            <DashTile onClick={this.props.toggleAllPostsById} ><div>Field Journal</div></DashTile>
             <DashTile><div>birdie Community</div></DashTile>
             <DashTile><div>Browse</div></DashTile>
           </DashGrid>
