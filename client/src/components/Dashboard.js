@@ -36,11 +36,11 @@ export default class Dashboard extends Component {
     return (
       <DashContainer>
        <Nav users={this.state.users}/>
-       <DashMenu toggleAllPostsById={this.toggleAllPostsById} />
+
         { this.state.showUserPosts ? 
-          (<AllPostsById posts={this.state.posts}/>) : null
+          (<AllPostsById posts={this.state.posts}/>) : 
+          (<DashMenu toggleAllPostsById={this.toggleAllPostsById}/>)
         }
-       <AllPostsByAllUsers /> 
       </DashContainer>
     )
   }
