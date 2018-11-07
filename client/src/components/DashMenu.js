@@ -18,11 +18,12 @@ grid-template-rows: 40vw 40vw;
 `
 
 const DashTile = styled.div`
-background-color: black;
+background-color: darkgray;
 color: white;
 display: flex;
 justify-content: center;
 align-items: center;
+border-radius: 100%;
 `
 
 export default class DashMenu extends Component {

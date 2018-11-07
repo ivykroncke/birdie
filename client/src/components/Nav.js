@@ -5,8 +5,7 @@ const NavContainer = styled.div`
 display: flex;
 justify-content: space-between;
 align-items: center;
-
-background-color: blue;
+background-color: slategray;
 color: white;
 `
 
@@ -25,7 +24,7 @@ export default class Nav extends Component {
     return (
       <NavContainer>
         <SiteTitle>birdie</SiteTitle>
-          <StyledUserIcon>User Icon Here</StyledUserIcon>
+          <StyledUserIcon>{this.props.user.username}</StyledUserIcon>
       </NavContainer>
     )
   }
