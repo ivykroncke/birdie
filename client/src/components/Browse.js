@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Button } from 'semantic-ui-react'
+import axios from 'axios'
 
 const BrowseContainer = styled.div`
 display: flex;
@@ -37,6 +38,15 @@ export default class Browse extends Component {
             {name: "Oriole",
             description: "The doge of birds."}
         ]
+
+    }
+
+    componentDidMount = async () => {
+        await this.birdCategoriesToState()
+    }
+
+    birdCategoriesToState = async () => {
+        
     }
 
   render() {
