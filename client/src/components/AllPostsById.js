@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { Button } from 'semantic-ui-react'
 
 const AllPostsContainer = styled.div`
   text-align: center;
