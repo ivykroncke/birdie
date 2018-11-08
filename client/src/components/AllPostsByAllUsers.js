@@ -4,7 +4,7 @@ export default class AllPostsByAllUsers extends Component {
   render() {
     return (
       <div>
-        All Posts by All Users
+        <h1>Birdie Community</h1>
       </div>
     )
   }

@@ -33,9 +33,9 @@ export default class DashMenu extends Component {
     return (
       <DashMenuContainer>
           <DashGrid>
-            <DashTile><div> New Post </div></DashTile>
+            <DashTile onClick={this.props.toggleShowNewPost}><div> New Post </div></DashTile>
             <DashTile onClick={this.props.toggleAllPostsById}><div> Field Journal </div></DashTile>
-            <DashTile><div> birdie Community </div></DashTile>
+            <DashTile onClick={this.props.toggleAllPostsByAllUsers}><div> birdie Community </div></DashTile>
             <DashTile onClick={this.props.toggleBrowse}><div> Browse </div></DashTile>
           </DashGrid>
       </DashMenuContainer>

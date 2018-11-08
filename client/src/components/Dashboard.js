@@ -6,6 +6,8 @@ import DashMenu from './DashMenu';
 import axios from 'axios'
 
 import Browse from './Browse';
+import NewPost from './NewPost';
+import AllPostsByAllUsers from './AllPostsByAllUsers';
 
 const DashContainer = styled.div`
 height: 100vh;
@@ -17,7 +19,9 @@ export default class Dashboard extends Component {
     users: {},
     posts: [],
     showUserPosts: false,
-    showBrowse: false
+    showBrowse: false,
+    showNewPost: false,
+    showAllPostsByAllUsers: false
   }
 
   componentDidMount = async () => {
@@ -28,7 +32,6 @@ export default class Dashboard extends Component {
   }
 
   toggleAllPostsById = () => {
-    console.log("ToggleAllPosts responds")
     this.setState({
       showUserPosts: !this.state.showUserPosts
     })
@@ -41,15 +44,33 @@ export default class Dashboard extends Component {
     })
   }
 
+  toggleShowNewPost = () => {
+    this.setState({
+      showNewPost: !this.state.showNewPost
+    })
+  }
+
+  toggleAllPostsByAllUsers = () => {
+    this.setState({
+      showAllPostsByAllUsers: !this.state.showAllPostsByAllUsers
+    })
+  }
+
   render() {
     return (
       <DashContainer>
 
        <Nav users={this.state.users}/>
 
-       { !this.state.showBrowse && !this.state.showUserPosts ?
+       { !this.state.showBrowse && 
+          !this.state.showUserPosts &&
+          !this.state.showNewPost &&
+          !this.state.showAllPostsByAllUsers ?
           (<DashMenu 
-            toggleBrowse={this.toggleBrowse} toggleAllPostsById={this.toggleAllPostsById}
+            toggleBrowse={this.toggleBrowse} 
+            toggleAllPostsById={this.toggleAllPostsById}
+            toggleShowNewPost={this.toggleShowNewPost}
+            toggleAllPostsByAllUsers={this.toggleAllPostsByAllUsers}
             />) : null 
         }
 
@@ -63,8 +84,15 @@ export default class Dashboard extends Component {
         }       
 
         { this.state.showBrowse ?
-          (<Browse />)
-          : null  
+          (<Browse />) : null  
+        }
+
+        { this.state.showNewPost ?
+          (<NewPost />) : null
+        }
+
+        { this.state.showAllPostsByAllUsers ?
+          (<AllPostsByAllUsers />) : (null )
         }
 
       </DashContainer>
