@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 
@@ -14,7 +15,8 @@ align-items: center;
 
 export default class EditDeleteUser extends Component {
   state = {
-    user: []
+    user: [],
+    goToDashboard: false
   }
 
   componentDidMount = async() => {
@@ -23,21 +25,50 @@ export default class EditDeleteUser extends Component {
     this.setState({ user: response.data })
   }
 
+  handleChange = (event) => {
+    const user = { ...this.state.user }
+    user[event.target.name] = event.target.value
+    this.setState({ user })
+  }
+
+  submitFunction = async (event) => {
+    event.preventDefault(event)
+    const userId = this.props.match.params.id
+    const newInfo = this.state.user
+    await axios.put(`/api/users/${userId}`, newInfo)
+    this.setState({ goToDashboard: true })
+  }
+
   render() {
+
+    const userId = this.props.match.params.id
+
+    if(this.state.goToDashboard) {
+      return(<Redirect to={`/users/${userId}/dashboard`} />)
+    }
+
     return (
       <EditWrapper>
         <h1>Edit User</h1>
         <Form>
           <Form.Field>
-            <lable>Username</lable>
-            <input name="username" type="text" placeholder={this.state.user.username}/>
+            <label>Username</label>
+            <input 
+              name="username" 
+              type="text" 
+              placeholder={this.state.user.username}
+              onChange={this.handleChange}/>
           </Form.Field>
           <Form.Field>
             <label>Email Address</label>
-            <input name="emailaddress" type="text" placeholder={this.state.user.emailaddress} />
+            <input 
+              name="emailaddress" 
+              type="text" 
+              placeholder={this.state.user.emailaddress}
+              onChange={this.handleChange} />
           </Form.Field>
-          <Button>
-
+          <Button onClick={this.submitFunction}>
+          Submit
           </Button>
         </Form>
 
