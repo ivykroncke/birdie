@@ -1,12 +1,12 @@
 class Api::BirdsController < ApplicationController
+include HTTParty
 
-    # Since this will eventually come from the Api
-    # We probably don't need update
 
 def index
-    @birds = Bird.all
+    @bird = HTTParty.get("https://environment.ehp.qld.gov.au/species/")
     render json: @birds
 end
+
 
 def show
     @bird = Bird.find(params[:id])

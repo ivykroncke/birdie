@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
+import { Button } from 'semantic-ui-react'
 
 const AddUserContainer = styled.div`
 display: flex;
@@ -18,9 +19,8 @@ margin: 3rem;
 width: 50%;
 `
 
-const StyledSubmit = styled.div`
+const StyledSubmit = styled(Button)`
 background-color: darkgray;
-color: white;
 border-radius: 15%;
 padding: 1rem;
 `
