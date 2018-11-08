@@ -16,7 +16,8 @@ align-items: center;
 export default class EditDeleteUser extends Component {
   state = {
     user: [],
-    goToDashboard: false
+    goToDashboard: false,
+    backToUsers: false
   }
 
   componentDidMount = async() => {
@@ -39,12 +40,21 @@ export default class EditDeleteUser extends Component {
     this.setState({ goToDashboard: true })
   }
 
+  deleteUser = async (userId) => {
+    await axios.delete(`/api/users/${userId}`)
+    // this.setState({ goToDashboard: true })
+  }
+
   render() {
 
     const userId = this.props.match.params.id
 
     if(this.state.goToDashboard) {
       return(<Redirect to={`/users/${userId}/dashboard`} />)
+    }
+
+    if(this.state.backToUsers) {
+      return(<Redirect to={`/users`} />)
     }
 
     return (
@@ -71,6 +81,10 @@ export default class EditDeleteUser extends Component {
           Submit
           </Button>
         </Form>
+
+        <Button onClick={ ( () => this.deleteUser(userId) ) }>
+          Delete
+        </Button>
 
       </EditWrapper>
     )

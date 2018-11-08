@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import Nav from './Nav';
-import NewPost from './NewPost'
 import AllPostsById from './AllPostsById'
-import AllPostsByAllUsers from './AllPostsByAllUsers';
 import styled from 'styled-components'
 import DashMenu from './DashMenu';
 import axios from 'axios'
