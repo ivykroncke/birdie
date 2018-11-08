@@ -27,7 +27,7 @@ class App extends Component {
             <Route exact path="/" component={Home}/>
             <Route exact path="/users/" component={Login} />
             <Route exact path="/users/:id/dashboard" component={Dashboard} />
-            <Route exact path="users/:id/edit" component={EditDeleteUser} />
+            <Route exact path="/users/:id/edit" component={EditDeleteUser} />
           </Switch>
         </Router>
       </AppWrapper>
