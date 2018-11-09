@@ -4,6 +4,7 @@ import AllPostsById from './AllPostsById'
 import styled from 'styled-components'
 import DashMenu from './DashMenu';
 import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 
 import Browse from './Browse';
 import NewPost from './NewPost';
@@ -21,7 +22,8 @@ export default class Dashboard extends Component {
     showUserPosts: false,
     showBrowse: false,
     showNewPost: false,
-    showAllPostsByAllUsers: false
+    showAllPostsByAllUsers: false,
+    redirectPage: false
   }
 
   componentDidMount = async () => {
@@ -56,11 +58,18 @@ export default class Dashboard extends Component {
     })
   }
 
+
   render() {
+
     return (
+
       <DashContainer>
 
-       <Nav users={this.state.users}/>
+       <Nav 
+        users={this.state.users} 
+        arbitraryToggle={this.arbitraryToggle} 
+        userId={this.props.match.params.id}
+        />
 
        { !this.state.showBrowse && 
           !this.state.showUserPosts &&
@@ -78,7 +87,8 @@ export default class Dashboard extends Component {
           (<div>
               <AllPostsById 
                 posts={this.state.posts}
-                toggleAllPostsById={this.toggleAllPostsById} />
+                toggleAllPostsById={this.toggleAllPostsById}
+                userId={this.props.match.params.id} />
             </div>)
           : null
         }       
