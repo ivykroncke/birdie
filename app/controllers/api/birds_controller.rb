@@ -1,9 +1,8 @@
 class Api::BirdsController < ApplicationController
-include HTTParty
 
 
 def index
-    @bird = HTTParty.get("https://environment.ehp.qld.gov.au/species/")
+    @birds = Bird.all
     render json: @birds
 end
 
