@@ -50,7 +50,7 @@ export default class Login extends Component {
 
     const UsersList = this.state.users.map((user, i) => {
       return (
-      <StyledUser to={`/users/${user.id}/dashboard/`} key={i}>
+      <StyledUser to={`/users/${user.id}/`} key={i}>
         <div>{user.username} </div> 
       </StyledUser>
       )

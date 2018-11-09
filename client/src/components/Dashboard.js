@@ -98,7 +98,8 @@ export default class Dashboard extends Component {
         }
 
         { this.state.showNewPost ?
-          (<NewPost />) : null
+          (<NewPost 
+          userId={this.props.match.params.id}/>) : null
         }
 
         { this.state.showAllPostsByAllUsers ?

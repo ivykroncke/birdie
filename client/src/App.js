@@ -26,10 +26,10 @@ class App extends Component {
         <Router>
           <Switch>
             <Route exact path="/" component={Home}/>
-            <Route exact path="/users/" component={Login} />
-            <Route exact path="/users/:id/dashboard" component={Dashboard} />
-            <Route exact path="/users/:id/edit" component={EditDeleteUser} />
-            <Route exact path="/users/:userId/posts/:id" component={ShowOnePost} />
+            <Route exact path="/users" component={Login} />
+            <Route exact path="/users/:id/" component={Dashboard} />
+            <Route exact path="/users/:id/edit/" component={EditDeleteUser} />
+            <Route exact path="/users/:userId/posts/:id/" component={ShowOnePost} />
           </Switch>
         </Router>
       </AppWrapper>

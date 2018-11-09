@@ -50,7 +50,7 @@ export default class EditDeleteUser extends Component {
     const userId = this.props.match.params.id
 
     if(this.state.goToDashboard) {
-      return(<Redirect to={`/users/${userId}/dashboard`} />)
+      return(<Redirect to={`/users/${userId}/`} />)
     }
 
     if(this.state.backToUsers) {

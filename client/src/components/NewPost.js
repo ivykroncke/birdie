@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
 
 import { Form, Button } from 'semantic-ui-react'
 
@@ -10,12 +11,7 @@ justify-content: space-around;
 align-items: center;
 `
 
-const Circle = styled.div`
-background-color: red;
-height: 5vh;
-`
-
-const StyledInput = styled.div`
+const StyledInput = styled.input`
 border: .25rem darkgray solid;
 padding: .5rem;
 margin: 3rem;
@@ -23,25 +19,44 @@ width: 50%;
 `
 
 export default class NewPost extends Component {
+  state = {
+    newPost: {
+      title: '',
+      content: ''
+    }
+  }
+
+  handleChange = (event) => {
+    const newPost = { ...this.state.newPost }
+    newPost[event.target.name] = event.target.value
+    this.setState({ newPost })
+  }
+
+  addPost = async (event) => {
+    event.preventDefault()
+    const userId = this.props.userId
+    await axios.post(`/api/users/${userId}/posts`, this.state.newPost)
+  }
+
   render() {
     return (
       <NewPostContainer>
 
-        <Circle></Circle>
         <h1>New Post</h1>
         
         <Form>
-        <div>
-          Title
-        <StyledInput></StyledInput>
-        </div>
-        <div>
-          Content
-        <StyledInput></StyledInput>
-        </div>
-        </Form>
+          <Form.Field>
+            <label>Title</label>
+            <StyledInput type="text" name="title" onChange={this.handleChange}></StyledInput>
+          </Form.Field>
 
-        <Button type="submit"> Submit </Button>
+          <Form.Field>
+            <label>Content</label>
+            <StyledInput type="text" name="content" onChange={this.handleChange}></StyledInput>
+          </Form.Field>
+
+        <Button type="submit" onClick={this.addPost}> Submit </Button>
+        </Form>
 
       </NewPostContainer>
     )
