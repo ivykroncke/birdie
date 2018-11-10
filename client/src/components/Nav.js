@@ -30,7 +30,7 @@ export default class Nav extends Component {
 
     return (
       <NavContainer>
-        <SiteTitle>birdie</SiteTitle>
+        <SiteTitle onClick={this.props.refreshPage}>birdie</SiteTitle>
         <StyledLinkToUser to={`/users/${userId}/edit`}> 
           {this.props.users.username}
         </StyledLinkToUser>

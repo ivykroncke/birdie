@@ -16,6 +16,7 @@ a {
 }
 h1 {
   font-family: Lora, sans-serif;
+  padding: 10vw;
 }
 `
 
@@ -33,6 +34,7 @@ class App extends Component {
           </Switch>
         </Router>
       </AppWrapper>
+      
     )
   }
 }

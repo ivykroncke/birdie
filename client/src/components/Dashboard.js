@@ -58,6 +58,13 @@ export default class Dashboard extends Component {
     })
   }
 
+  refreshPage = () => {
+    console.log("Dis page be refreshin y'all")
+    this.setState({
+      redirectPage: true
+    })
+  }
+
 
   render() {
 
@@ -69,12 +76,16 @@ export default class Dashboard extends Component {
         users={this.state.users} 
         arbitraryToggle={this.arbitraryToggle} 
         userId={this.props.match.params.id}
+        refreshPage={this.refreshPage}
         />
+
+      {/* I need to have a switch for if that refresh is on to go to the dash menu */}
 
        { !this.state.showBrowse && 
           !this.state.showUserPosts &&
           !this.state.showNewPost &&
-          !this.state.showAllPostsByAllUsers ?
+          !this.state.showAllPostsByAllUsers 
+          ? 
           (<DashMenu 
             toggleBrowse={this.toggleBrowse} 
             toggleAllPostsById={this.toggleAllPostsById}

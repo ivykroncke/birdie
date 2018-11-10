@@ -30,14 +30,7 @@ margin: 5rem;
 
 export default class Browse extends Component {
     state = {
-        birds: [
-            {name: "Bluejay",
-            description: "noisy as all get out"},
-            {name: "Cardinal",
-            description: "bossy but that is okay."},
-            {name: "Oriole",
-            description: "The doge of birds."}
-        ]
+        birds: []
 
     }
 
@@ -46,7 +39,10 @@ export default class Browse extends Component {
     }
 
     birdCategoriesToState = async () => {
-        
+        const response = await axios.get(`/api/birds`)
+        const birdData = response.data.Family
+        console.log(birdData)
+        this.setState({birds: birdData})
     }
 
   render() {
@@ -55,8 +51,7 @@ export default class Browse extends Component {
         return (
             <BirdDiv key={i}>
                 <TextDiv>
-                    <div>{bird.name}</div>
-                    <div>{bird.description}</div> 
+                    {bird.FamilyCommonName}
                 </TextDiv>
                 <AddButton>Add</AddButton>
             </BirdDiv>
