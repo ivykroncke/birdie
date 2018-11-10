@@ -30,8 +30,74 @@ margin: 5rem;
 
 export default class Browse extends Component {
     state = {
-        birds: []
-
+        birds: [],
+        georgiaBirds: [ "ducks, geese, and waterfowl", 
+        "chachalacas",
+        "new world quail",
+        "pheasants, grouse, and allies",
+        "grebes",
+        "pigeons and doves",
+        "cuckoos and anis",
+        "nightjars and allies",
+        "swifts",
+        "hummingbirds",
+        "rails, gallinules, and coots",
+        "limpkin",
+        "cranes",
+        "stilts and avocets",
+        "oystercatchers",
+        "lapwings and plovers",
+        "sandpipers and allies",
+        "skuas and jaegers",
+        "alcids",
+        "gulls, terns, and skimmers",
+        "tropicbirds",
+        "loons",
+        "southern storm-petrels",
+        "northern storm-petrels",
+        "fulmars, petrels, and shearwaters",
+        "storks",
+        "frigatebirds",
+        "boobies and gannets",
+        "cormorants",
+        "anhingas",
+        "pelicans",
+        "bitterns, herons, and egrets",
+        "ibises and spoonbills",
+        "new world vultures",
+        "osprey",
+        "hawks, kites, and eagles",
+        "barn-owls",
+        "typical owls",
+        "kingfishers",
+        "woodpeckers",
+        "falcons and caracaras",
+        "tyrant flycatchers",
+        "shrikes",
+        "vireos",
+        "jays, crows, magpies, and ravens",
+        "larks",
+        "swallows and martins",
+        "chickadees and titmice",
+        "nuthatches",
+        "treecreepers",
+        "wrens",
+        "gnatcatchers",
+        "kinglets",
+        "old world flycatchers",
+        "thrushes",
+        "mockingbirds and thrashers",
+        "starlings",
+        "waxwings",
+        "old world sparrows",
+        "pipits",
+        "finches",
+        "longspurs and snow buntings",
+        "new world sparrows",
+        "yellow-breasted chat",
+        "icterids",
+        "wood-warblers",
+        "cardinals and allies" ]
     }
 
     componentDidMount = async () => {
@@ -41,21 +107,30 @@ export default class Browse extends Component {
     birdCategoriesToState = async () => {
         const response = await axios.get(`/api/birds`)
         const birdData = response.data.Family
-        console.log(birdData)
         this.setState({birds: birdData})
+        console.log("All Birds", this.state.birds)
+        this.filterGeorgiaBirds()
+    }
+
+    filterGeorgiaBirds = () => {
+
+        // const filteredGeorgiaBirds = this.state.birds.filter(bird => {
+        //     this.state.georgiaBirds.indexOf(bird.FamilyCommonName) < 0
+        // })
+        // console.log(filteredGeorgiaBirds)
     }
 
   render() {
 
     const birdList = this.state.birds.map((bird, i) => {
-        return (
-            <BirdDiv key={i}>
-                <TextDiv>
-                    {bird.FamilyCommonName}
-                </TextDiv>
-                <AddButton>Add</AddButton>
-            </BirdDiv>
-        )
+            return (
+                <BirdDiv key={i}>
+                    <TextDiv>
+                        {bird.FamilyCommonName}
+                    </TextDiv>
+                    <AddButton>Add</AddButton>
+                </BirdDiv>
+            )
     })
 
     return (
