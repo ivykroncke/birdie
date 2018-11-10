@@ -4,15 +4,11 @@ import styled from 'styled-components'
 import CreateUser from './CreateUser'
 import axios from 'axios'
 
-const LoginContainer = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: flex-start;
-align-items: center;
-margin: 0 2rem;
-`
+import { Button } from 'semantic-ui-react'
+import { HomeWrapper, LightBackground } from './SharedComponents'
 
 const StyledLogin = styled.h1`
+text-align: center;
 padding: 2rem;
 `
 
@@ -24,11 +20,9 @@ const StyledUser = styled(Link)`
 padding: 1rem;
 `
 
-const ButtonForCreateNewUser = styled.div`
-padding: .5rem;
-border: .1rem solid black;
-border-radius: 15%;
-margin: 2rem;
+const ButtonForCreateNewUser = styled(Button)`
+text-align: center;
+width: 100%;
 `
 
 export default class Login extends Component {
@@ -57,17 +51,23 @@ export default class Login extends Component {
     })
 
     return (
-      <LoginContainer>
-        <StyledLogin>sign in</StyledLogin>
+      <HomeWrapper>
+        <LightBackground>
         {this.state.createNewUserToggle 
            ?(<div>
+             <StyledLogin>Select a User</StyledLogin>
               <StyledUsers>{UsersList}</StyledUsers>
               <ButtonForCreateNewUser onClick={this.toggleCreateNewUser}>
                 Create a New User
               </ButtonForCreateNewUser>
            </div>) :
-            (<CreateUser />)}
-      </LoginContainer>
+            ( <div>
+                <StyledLogin>Create a New User </StyledLogin>
+                <CreateUser />
+              </div>
+              )}
+        </LightBackground>
+      </HomeWrapper>
     )
   }
 }

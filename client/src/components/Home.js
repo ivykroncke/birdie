@@ -2,24 +2,16 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-const HomeWrapper = styled.div`
-height: 100vh;
-display: flex;
-justify-content: space-around;
-align-items: center;
-flex-direction: column;
-background-image: url('https://content.presspage.com/uploads/1763/1920_year-of-the-bird-george-grall.jpg?10000');
-background-size: cover;
-`
+import { Button } from 'semantic-ui-react'
+import { HomeWrapper } from './SharedComponents'
+
 
 const AppName = styled.h1`
-font-size: 4rem;
+font-size: 10vh;
 `
 
-const StyledLogin = styled(Link)`
-padding: .5rem;
-border: .1rem solid black;
-border-radius: 15%;
+const StyledLink = styled(Link)`
+margin: 10vh;
 `
 
 export default class Home extends Component {
@@ -27,7 +19,7 @@ export default class Home extends Component {
     return (
       <HomeWrapper>
         <AppName>birdie</AppName>
-        <StyledLogin to="/users">Login</StyledLogin>
+        <StyledLink to="/users"><Button>Sign In Here</Button></StyledLink>
       </HomeWrapper>
     )
   }

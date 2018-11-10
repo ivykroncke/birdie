@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
-import { Button } from 'semantic-ui-react'
+import { Form, Button } from 'semantic-ui-react'
 
 const AddUserContainer = styled.div`
 display: flex;
@@ -20,9 +20,7 @@ width: 50%;
 `
 
 const StyledSubmit = styled(Button)`
-background-color: darkgray;
-border-radius: 15%;
-padding: 1rem;
+margin-top: 100px;
 `
 
 export default class CreateUser extends Component {
@@ -67,21 +65,25 @@ export default class CreateUser extends Component {
 
     if (this.state.lastCreatedUserId) {
       return (
-        <Redirect to={`/users/${userId}/dashboard`} />
+        <Redirect to={`/users/${userId}/`} />
       )
     }
 
     return (
       <AddUserContainer>
-        <form>
-            <div>Username</div>
+        <Form>
+          <Form.Field>
+            <label>Username</label>
             <StyledInput type='text' name='username' 
-              onChange={this.handleChange} />
-            <div>E-mail Address</div>
+              onChange={this.handleChange}></StyledInput>
+          </Form.Field>
+          <Form.Field>
+            <label>E-mail Address</label>
             <StyledInput type='text' name='emailaddress' 
-              onChange={this.handleChange} />
+              onChange={this.handleChange}></StyledInput>
+          </Form.Field>
             <StyledSubmit type="submit" onClick={this.addUser}>Submit</StyledSubmit>
-        </form>
+        </Form>
       </AddUserContainer>
     )
   }

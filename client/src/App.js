@@ -16,7 +16,7 @@ a {
 }
 h1 {
   font-family: Lora, sans-serif;
-  padding: 10vw;
+  margin: 0 auto;
 }
 `
 
