@@ -9,20 +9,21 @@ import { HomeWrapper, LightBackground } from './SharedComponents'
 
 const StyledLogin = styled.h1`
 text-align: center;
-padding: 2rem;
+font-family: 3rem;
+padding: 3vh;
 `
 
-const StyledUsers = styled.div`
-text-align: center;
+const ContentWrapper = styled.div`
+height: 80vh;
+display: flex; 
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
 `
 
 const StyledUser = styled(Link)`
-padding: 1rem;
-`
-
-const ButtonForCreateNewUser = styled(Button)`
-text-align: center;
-width: 100%;
+font-size: 1.5rem;
+padding: 3vh;
 `
 
 export default class Login extends Component {
@@ -53,14 +54,15 @@ export default class Login extends Component {
     return (
       <HomeWrapper>
         <LightBackground>
+
         {this.state.createNewUserToggle 
-           ?(<div>
-             <StyledLogin>Select a User</StyledLogin>
-              <StyledUsers>{UsersList}</StyledUsers>
-              <ButtonForCreateNewUser onClick={this.toggleCreateNewUser}>
-                Create a New User
-              </ButtonForCreateNewUser>
-           </div>) :
+        
+           ?(<ContentWrapper>
+              <StyledLogin>Select a User</StyledLogin>
+              {UsersList}
+              <Button color="black" onClick={this.toggleCreateNewUser}>Create a New User</Button>
+            </ContentWrapper>) 
+           :
             ( <div>
                 <StyledLogin>Create a New User </StyledLogin>
                 <CreateUser />

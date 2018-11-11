@@ -22,7 +22,7 @@ export default class Home extends Component {
       <FadeIn  duration="2s">
         <HomeWrapper>
           <AppName>birdie</AppName>
-          <StyledLink to="/users"><Button>Sign In Here</Button></StyledLink>
+          <StyledLink to="/users"><Button color="black" size="large">Sign In Here</Button></StyledLink>
         </HomeWrapper>
       </FadeIn>
 

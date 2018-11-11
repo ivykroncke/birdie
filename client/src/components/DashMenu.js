@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 const DashMenuContainer = styled.div`
-height: 80%;
+height: 60vh;
 display: flex;
 flex-direction: column;
 justify-content: center;
