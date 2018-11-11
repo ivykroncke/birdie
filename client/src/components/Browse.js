@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import { Button } from 'semantic-ui-react'
 import axios from 'axios'
 
@@ -20,11 +21,11 @@ margin: 2vw;
 color: white;
 `
 
-const TextDiv = styled.div`
+const StyledLink = styled(Link)`
 margin: 2rem;
 `
 
-const AddButton = styled(Button)`
+const SelectButton = styled(Button)`
 margin: 5rem;
 `
 
@@ -126,7 +127,7 @@ export default class Browse extends Component {
                 this.state.georgiaBirds.includes(bird.FamilyCommonName)
             )
         })
-        console.log(filteredGeorgiaBirds)
+        this.setState({birds: filteredGeorgiaBirds})
     }
 
     filterCommonBirds = () => {
@@ -149,22 +150,23 @@ export default class Browse extends Component {
 
   render() {
 
-    // const birdList = this.state.birds.map((bird, i) => {
-    //         return (
-    //             <BirdDiv key={i}>
-    //                 <TextDiv>
-    //                     {bird.FamilyCommonName}
-    //                 </TextDiv>
-    //                 <AddButton>Add</AddButton>
-    //             </BirdDiv>
-    //         )
-    // })
+    const birdList = this.state.birds.map((bird, i) => {
+            return (
+                <BirdDiv key={i}>
+                    <StyledLink to={`/users/${this.props.userId}/birds/${i}`}>
+                        <div>{bird.FamilyCommonName}</div>
+                        <div><SelectButton>View</SelectButton></div>
+                    </StyledLink>
+                    
+                </BirdDiv>
+            )
+    })
 
     return (
       <BrowseContainer>
         <h1>Browse</h1>
-        <h2>Browse below to add a bird to your collection!</h2>
-        {/* {birdList} */}
+        <h3>Browse Taxonomic Categories Below</h3>
+       {birdList}
       </BrowseContainer>
     )
   }

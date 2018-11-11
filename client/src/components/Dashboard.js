@@ -105,7 +105,8 @@ export default class Dashboard extends Component {
         }       
 
         { this.state.showBrowse ?
-          (<Browse />) : null  
+          (<Browse 
+          userId={this.props.match.params.id}/>) : null  
         }
 
         { this.state.showNewPost ?
