@@ -30,6 +30,8 @@ margin: 5rem;
 
 export default class Browse extends Component {
     state = {
+        taxonomy: false,
+        common: false,
         birds: [],
         georgiaBirds: [ "ducks, geese, and waterfowl", 
         "chachalacas",
@@ -104,28 +106,46 @@ export default class Browse extends Component {
         await this.birdCategoriesToState()
     }
 
-    birdCategoriesToState = async () => {
-        const response = await axios.get(`/api/birds`)
-        //This logs an array of all bird families straight from the API as objects.
-        //One of the keys is FamilyCommonName - which I want to match to my georgiaBirds array
-        const birdData = response.data.Family
-        console.log(birdData)
-        // const newBirdData = birdData.map(bird => {
-        //     bird.FamilyCommonName.toLowerCase()
-        // })
-        // this.setState({birds: newBirdData})
-        // console.log("All Birds", this.state.birds)
-        // this.filterGeorgiaBirds()
+    commonNameToLowerCase = () => {
+        const birdsToLowerCase = []
+        let birdData = this.state.birds
+        console.log("bird data before for loop", birdData)
+        birdData.forEach(bird => {
+            let changeBirds = { ...bird }
+            changeBirds.FamilyCommonName = changeBirds.FamilyCommonName.toLowerCase()
+            birdsToLowerCase.push(changeBirds)
+        })
+        birdData = birdsToLowerCase
+        //pass along the version of state with the common name lowercased
+        this.filterGeorgiaBirds(birdData)
     }
 
-    // filterGeorgiaBirds = () => {
-    //     const filteredGeorgiaBirds = this.state.birds.filter(bird => {
-    //         return (
-    //             this.state.georgiaBirds.includes(bird.FamilyCommonName)
-    //         )
-    //     })
-    //     console.log(filteredGeorgiaBirds)
-    // }
+    filterGeorgiaBirds = (birdData) => {
+        const filteredGeorgiaBirds = birdData.filter(bird => {
+            return (
+                this.state.georgiaBirds.includes(bird.FamilyCommonName)
+            )
+        })
+        console.log(filteredGeorgiaBirds)
+    }
+
+    filterCommonBirds = () => {
+        console.log("This will be a list of common backyard birds")
+    }
+
+        //this function populates state with bird data
+        birdCategoriesToState = async () => {
+            const response = await axios.get(`/api/birds`)
+            const birdData = response.data.Family
+            this.setState({birds: birdData})
+            this.commonNameToLowerCase()
+            //these are switches for what to do next
+            // if(this.state.taxonomy) {
+            //     this.commonNameToLowerCase()
+            // } else if(this.state.common) {
+            //     this.filterCommonBirds()
+            // }
+        }
 
   render() {
 
