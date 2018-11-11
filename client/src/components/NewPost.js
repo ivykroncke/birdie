@@ -5,7 +5,6 @@ import axios from 'axios'
 import { Form, Button } from 'semantic-ui-react'
 
 const NewPostContainer = styled.div`
-height: 80vh;
 display: flex;
 flex-direction: column;
 justify-content: center;

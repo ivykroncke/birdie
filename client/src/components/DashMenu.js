@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import media from 'styled-media-query'
 
 const DashMenuContainer = styled.div`
 height: 60vh;
@@ -11,10 +12,15 @@ align-items: center;
 
 const DashGrid = styled.div`
 display: grid;
-margin: 8vw;
+margin: 5vw;
 grid-gap: 5vw;
 grid-template-columns: 40vw 40vw;
 grid-template-rows: 40vw 40vw;
+
+${media.greaterThan('small')`
+  display: flex;
+  flex-direction: column;
+`}
 `
 
 const DashTile = styled.div`
@@ -24,6 +30,13 @@ display: flex;
 justify-content: center;
 align-items: center;
 border-radius: 100%;
+
+${media.greaterThan('small')`
+  padding: 5vw;
+  width: 80vw;
+  border-radius: 5rem;
+  margin: 2vw;
+`}
 `
 
 export default class DashMenu extends Component {
