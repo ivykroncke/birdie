@@ -4,7 +4,7 @@ export default class ShowOneBird extends Component {
   render() {
     return (
       <div>
-        ONE BIRD
+        Showing One Bird
       </div>
     )
   }

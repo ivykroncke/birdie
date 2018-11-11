@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 import { Button } from 'semantic-ui-react'
 import axios from 'axios'
+import ShowOneBird from './ShowOneBird';
 
 const BrowseContainer = styled.div`
 display: flex;
@@ -12,27 +12,13 @@ flex-direction: column;
 margin: 10vw;
 `
 
-const BirdDiv = styled.div`
-text-align: center;
-background-color: lightgray;
-width: 90vw;
-padding: 2vw;
-margin: 2vw;
-color: white;
-`
-
-const StyledLink = styled(Link)`
-margin: 2rem;
-`
-
-const SelectButton = styled(Button)`
-margin: 5rem;
-`
-
 export default class Browse extends Component {
     state = {
-        taxonomy: false,
+        taxonomy: true,
         common: false,
+        featuredBird: {
+            SpeciesUrl: ''
+        },
         birds: [],
         georgiaBirds: [ "ducks, geese, and waterfowl", 
         "chachalacas",
@@ -110,14 +96,12 @@ export default class Browse extends Component {
     commonNameToLowerCase = () => {
         const birdsToLowerCase = []
         let birdData = this.state.birds
-        console.log("bird data before for loop", birdData)
         birdData.forEach(bird => {
             let changeBirds = { ...bird }
             changeBirds.FamilyCommonName = changeBirds.FamilyCommonName.toLowerCase()
             birdsToLowerCase.push(changeBirds)
         })
         birdData = birdsToLowerCase
-        //pass along the version of state with the common name lowercased
         this.filterGeorgiaBirds(birdData)
     }
 
@@ -131,7 +115,7 @@ export default class Browse extends Component {
     }
 
     filterCommonBirds = () => {
-        console.log("This will be a list of common backyard birds")
+        //placeholder for suggested birds
     }
 
         //this function populates state with bird data
@@ -140,34 +124,47 @@ export default class Browse extends Component {
             const birdData = response.data.Family
             this.setState({birds: birdData})
             this.commonNameToLowerCase()
-            //these are switches for what to do next
-            // if(this.state.taxonomy) {
-            //     this.commonNameToLowerCase()
-            // } else if(this.state.common) {
-            //     this.filterCommonBirds()
-            // }
+            // these are switches for what to do next
+            if(this.state.taxonomy) {
+                this.commonNameToLowerCase()
+            } else if(this.state.common) {
+                this.filterCommonBirds()
+            }
         }
+
+    changeToViewOneBird = (SpeciesUrl) => {
+        const featuredBird = { ...this.state.featuredBird }
+        featuredBird.SpeciesUrl = SpeciesUrl
+        console.log(featuredBird.SpeciesUrl)
+        this.setState({ taxonomy: !this.state.taxonomy, featuredBird })     
+    }
 
   render() {
 
     const birdList = this.state.birds.map((bird, i) => {
+        const SpeciesUrl = bird.SpeciesUrl
             return (
-                <BirdDiv key={i}>
-                    <StyledLink to={`/users/${this.props.userId}/birds/${i}`}>
+                <Button onClick={()=>this.changeToViewOneBird(SpeciesUrl)} key={i}>
                         <div>{bird.FamilyCommonName}</div>
-                        <div><SelectButton>View</SelectButton></div>
-                    </StyledLink>
-                    
-                </BirdDiv>
+                </Button>
             )
     })
 
     return (
-      <BrowseContainer>
-        <h1>Browse</h1>
-        <h3>Browse Taxonomic Categories Below</h3>
-       {birdList}
-      </BrowseContainer>
+      <div>
+        {this.state.taxonomy ? (
+            <BrowseContainer>
+                <h1>Browse</h1>
+                <h3>Browse Taxonomic Categories Below</h3>
+                {birdList}
+            </BrowseContainer>)
+            :
+            (<ShowOneBird
+                birds={this.state.birds}
+                userId={this.props.userId}
+                taxonomy={this.state.taxonomy}
+                featuredBird={this.state.featuredBird}/>)}
+      </div>
     )
   }
 }
