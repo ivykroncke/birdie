@@ -7,9 +7,11 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 flex-direction: column;
+background-color: black;
 background-image: url('https://content.presspage.com/uploads/1763/1920_year-of-the-bird-george-grall.jpg?10000');
 background-size: cover;
 background-position: center;
+background-repeat: no-repeat;
 `
 
 //Featured in Login.js
