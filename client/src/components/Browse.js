@@ -106,38 +106,45 @@ export default class Browse extends Component {
 
     birdCategoriesToState = async () => {
         const response = await axios.get(`/api/birds`)
+        //This logs an array of all bird families straight from the API as objects.
+        //One of the keys is FamilyCommonName - which I want to match to my georgiaBirds array
         const birdData = response.data.Family
-        this.setState({birds: birdData})
-        console.log("All Birds", this.state.birds)
-        this.filterGeorgiaBirds()
-    }
-
-    filterGeorgiaBirds = () => {
-
-        // const filteredGeorgiaBirds = this.state.birds.filter(bird => {
-        //     this.state.georgiaBirds.indexOf(bird.FamilyCommonName) < 0
+        console.log(birdData)
+        // const newBirdData = birdData.map(bird => {
+        //     bird.FamilyCommonName.toLowerCase()
         // })
-        // console.log(filteredGeorgiaBirds)
+        // this.setState({birds: newBirdData})
+        // console.log("All Birds", this.state.birds)
+        // this.filterGeorgiaBirds()
     }
+
+    // filterGeorgiaBirds = () => {
+    //     const filteredGeorgiaBirds = this.state.birds.filter(bird => {
+    //         return (
+    //             this.state.georgiaBirds.includes(bird.FamilyCommonName)
+    //         )
+    //     })
+    //     console.log(filteredGeorgiaBirds)
+    // }
 
   render() {
 
-    const birdList = this.state.birds.map((bird, i) => {
-            return (
-                <BirdDiv key={i}>
-                    <TextDiv>
-                        {bird.FamilyCommonName}
-                    </TextDiv>
-                    <AddButton>Add</AddButton>
-                </BirdDiv>
-            )
-    })
+    // const birdList = this.state.birds.map((bird, i) => {
+    //         return (
+    //             <BirdDiv key={i}>
+    //                 <TextDiv>
+    //                     {bird.FamilyCommonName}
+    //                 </TextDiv>
+    //                 <AddButton>Add</AddButton>
+    //             </BirdDiv>
+    //         )
+    // })
 
     return (
       <BrowseContainer>
         <h1>Browse</h1>
         <h2>Browse below to add a bird to your collection!</h2>
-        {birdList}
+        {/* {birdList} */}
       </BrowseContainer>
     )
   }

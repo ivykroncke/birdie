@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const NavContainer = styled.div`
+width: 100vw;
 height: 10vh;
 display: flex;
-justify-content: space-between;
+justify-content: space-around;
 align-items: center;
 background-color: slategray;
 color: white;
@@ -13,8 +14,6 @@ color: white;
 
 const SiteTitle = styled.h1`
 font-size: 2rem;
-margin: 0;
-padding: 0 0 0 5vw;
 `
 
 const StyledLinkToUser = styled(Link)`

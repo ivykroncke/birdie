@@ -5,10 +5,15 @@ import axios from 'axios'
 import { Form, Button } from 'semantic-ui-react'
 
 const NewPostContainer = styled.div`
+height: 80vh;
 display: flex;
 flex-direction: column;
-justify-content: space-around;
+justify-content: center;
 align-items: center;
+`
+
+const StyledHeader = styled.h1`
+padding: 5vh;
 `
 
 const StyledInput = styled.input`
@@ -42,7 +47,7 @@ export default class NewPost extends Component {
     return (
       <NewPostContainer>
 
-        <h1>New Post</h1>
+        <StyledHeader>New Post</StyledHeader>
         
         <Form>
           <Form.Field>
