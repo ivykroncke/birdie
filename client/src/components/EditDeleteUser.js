@@ -4,14 +4,7 @@ import axios from 'axios'
 import styled from 'styled-components'
 
 import { Form, Button } from 'semantic-ui-react'
-
-const EditWrapper = styled.div`
-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-`
+import { HomeWrapper, LightBackground } from './SharedComponents'
 
 export default class EditDeleteUser extends Component {
   state = {
@@ -59,7 +52,8 @@ export default class EditDeleteUser extends Component {
     }
 
     return (
-      <EditWrapper>
+      <HomeWrapper>
+        <LightBackground>
         <h1>Edit User</h1>
         <Form>
           <Form.Field>
@@ -83,11 +77,11 @@ export default class EditDeleteUser extends Component {
           </Button>
         </Form>
 
-        <Button onClick={ ( () => this.deleteUser(userId) ) }>
-          Delete
+        <Button color="red" onClick={ ( () => this.deleteUser(userId) ) }>
+          Delete this user
         </Button>
-
-      </EditWrapper>
+      </LightBackground>
+      </HomeWrapper>
     )
   }
 }

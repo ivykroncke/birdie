@@ -22,7 +22,8 @@ def update
 end
 
 def destroy
-    @user = User.find(params[:id]).delete
+    @user = User.find(params[:id])
+    @user.destroy
     render status: 200
 end
 
