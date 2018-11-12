@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Button, Dropdown } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+import { Button, Dropdown, Segment } from 'semantic-ui-react'
 import axios from 'axios'
 import ShowOneBird from './ShowOneBird';
 
 const BrowseContainer = styled.div`
-background-color: rgba(59, 75, 78, 0.12);
 height: 100%;
 display: flex;
 align-items: center;
 justify-content: space-around;
 flex-direction: column;
-margin: 10vw;
+padding: 3vw;
+margin: 3vw;
 `
 
 export default class Browse extends Component {
@@ -22,6 +23,9 @@ export default class Browse extends Component {
             SpeciesUrl: ''
         },
         birds: [],
+        popularinGeorgia: [
+            "brown thrasher", "robin", "woodpecker"
+        ],
         georgiaBirds: [ "ducks, geese, and waterfowl", 
         "chachalacas",
         "new world quail",
@@ -137,18 +141,27 @@ export default class Browse extends Component {
     changeToViewOneBird = (SpeciesUrl) => {
         const featuredBird = { ...this.state.featuredBird }
         featuredBird.SpeciesUrl = SpeciesUrl
-        console.log(featuredBird.SpeciesUrl)
         this.setState({ taxonomy: !this.state.taxonomy, featuredBird })     
     }
 
   render() {
 
+    const popularList = this.state.popularinGeorgia.map((bird, i) => {
+        return (
+            <Button key={i}>
+                {bird}
+            </Button>
+        )
+    })
+
     const taxonomyList = this.state.birds.map((bird, i) => {
-        const SpeciesUrl = bird.SpeciesUrl
+        const birdFamilyParams = bird.FamilyName.toLowerCase()
             return (
-                <Button onClick={()=>this.changeToViewOneBird(SpeciesUrl)} key={i}>
-                        <div>{bird.FamilyCommonName}</div>
-                </Button>
+                <div key={i}>
+                    <Segment>
+                        <div><Link to={`/users/${this.props.userId}/birds/alcedinidae`} > {bird.FamilyCommonName} </Link></div>
+                    </Segment>
+                </div>
             )
     })
 
@@ -156,9 +169,10 @@ export default class Browse extends Component {
       <div>
         {this.state.taxonomy ? (
             <BrowseContainer>
+
                 <h1>Browse</h1>
                 <h3>Browse by Popular Birds</h3>
-                <div>That list will be here</div>
+                <div>{popularList}</div>
 
                 <h3>Browse Taxonomic Categories Below</h3>
                 <Dropdown placeholder="select Family">

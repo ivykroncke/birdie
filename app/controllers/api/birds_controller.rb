@@ -7,20 +7,9 @@ def index
 end
 
 def show
-    @bird = Bird.find(params[:id])
+    @bird = HTTParty.get("http://environment.ehp.qld.gov.au/species/?op=getspecies&family=#{params[:id]}")
     render json: @bird
 end
-
-def create
-    @bird = Bird.create(bird_params)
-    render json: @bird
-end
-
-def destroy
-    @bird = Bird.find(params[:id]).delete
-    render status: 200
-end
-
 
 def bird_params
     params.require(:bird).permit(:name, :description, :image)
