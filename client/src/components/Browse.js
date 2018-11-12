@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Button } from 'semantic-ui-react'
+import { Button, Dropdown } from 'semantic-ui-react'
 import axios from 'axios'
 import ShowOneBird from './ShowOneBird';
 
 const BrowseContainer = styled.div`
+background-color: rgba(59, 75, 78, 0.12);
 height: 100%;
 display: flex;
 align-items: center;
@@ -142,7 +143,7 @@ export default class Browse extends Component {
 
   render() {
 
-    const birdList = this.state.birds.map((bird, i) => {
+    const taxonomyList = this.state.birds.map((bird, i) => {
         const SpeciesUrl = bird.SpeciesUrl
             return (
                 <Button onClick={()=>this.changeToViewOneBird(SpeciesUrl)} key={i}>
@@ -156,8 +157,14 @@ export default class Browse extends Component {
         {this.state.taxonomy ? (
             <BrowseContainer>
                 <h1>Browse</h1>
+                <h3>Browse by Popular Birds</h3>
+                <div>That list will be here</div>
+
                 <h3>Browse Taxonomic Categories Below</h3>
-                {birdList}
+                <Dropdown placeholder="select Family">
+                   <div>{taxonomyList}</div> 
+                </Dropdown>
+
             </BrowseContainer>)
             :
             (<ShowOneBird

@@ -44,8 +44,8 @@ ${media.greaterThan('small')`
 `}
 `
 
-const Feather = styled.img`
-height: 4vh;
+const Birdie = styled(Link)`
+font-size: 2rem;
 text-shadow: .25rem .25rem 1rem black;
 :hover {
   color: lightgray;
@@ -53,7 +53,7 @@ text-shadow: .25rem .25rem 1rem black;
 `
 
 const StyledLinkToUser = styled(Link)`
-font-size: 1.75rem;
+font-size: 1.25rem;
 text-shadow: .25rem .25rem 1rem black;
 :hover {
   color: lightgray;
@@ -71,9 +71,9 @@ export default class Nav extends Component {
       <FeaturedImage>
         <NavContainer> 
           <div>
-            <Link to={`/users/${userId}/`}>
-              <Feather src="https://i.imgur.com/k5pRXro.png" alt="feather" />
-            </Link>
+            <Birdie to={`/users/${userId}/`}>
+              <h1>birdie</h1>
+            </Birdie>
           </div>
           <div>
             <StyledLinkToUser to={`/users/${userId}/edit`}> 
