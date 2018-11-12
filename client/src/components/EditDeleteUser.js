@@ -35,7 +35,6 @@ export default class EditDeleteUser extends Component {
   }
 
   deleteUser = async (userId) => {
-    console.log(userId)
     await axios.delete(`/api/users/${userId}`)
     this.setState({ goToLogin: true })
   }

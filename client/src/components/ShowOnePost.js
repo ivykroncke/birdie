@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { Redirect, Link } from 'react-router-dom'
 import { Icon, Button, Confirm } from 'semantic-ui-react'
 import { HomeWrapper, LightBackground } from './SharedComponents'
 import axios from 'axios';
@@ -21,7 +22,9 @@ font-size: 1rem;
 export default class ShowOnePost extends Component {
   state ={
     user: {},
-    post: {}
+    post: {},
+    open: false,
+    redirect: false
   }
 
   componentDidMount = async () => {
@@ -40,7 +43,23 @@ export default class ShowOnePost extends Component {
     this.setState({ post: swapTime})
   }
 
+  deletePost = async () => {
+    const userId = this.props.match.params.userId
+    const postId = this.props.match.params.id
+    await axios.delete(`/api/users/${userId}/posts/${postId}`)
+    this.setState({ redirect: true })
+  }
+
+  open = () => this.setState({ open: true })
+  close = () => this.setState({ open: false })
+
   render() {
+
+    const userId = this.props.match.params.userId
+
+    if(this.state.redirect) {
+      return(<Redirect to={`/users/${userId}/`} />)
+    }
 
     return (
 
@@ -50,7 +69,14 @@ export default class ShowOnePost extends Component {
           <Time>{this.state.post.created_at}</Time>
           <h3>{this.state.post.content}</h3>
           <OptionsContainer>
-            <Icon name="trash" /> <div>Back</div>
+            <div>
+              <Icon name="trash" onClick={this.open} />
+              <Confirm 
+                open={this.state.open}
+                onCancel={this.close}
+                onConfirm={()=> this.deletePost(userId)} />
+              </div>
+            <Link to={`/users/${userId}/posts/`}><Button>Back</Button></Link>
           </OptionsContainer>
         </OnePostLightBackground>
       </HomeWrapper>
