@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Icon } from 'semantic-ui-react'
 import media from 'styled-media-query'
+import axios from 'axios';
 
 // Styled Media Query Sizes: 
 // {
@@ -27,7 +28,7 @@ ${media.greaterThan('medium')`
 
 const NavContainer = styled.div`
 width: 100vw;
-height: 40vh;
+height: 25vh;
 display: flex;
 justify-content: space-between;
 align-items: flex-start;
@@ -62,6 +63,10 @@ text-shadow: .25rem .25rem 1rem black;
 
 
 export default class Nav extends Component {
+
+  state = {
+    user: {}
+  }
 
   render() {
 

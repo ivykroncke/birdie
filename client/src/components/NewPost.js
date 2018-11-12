@@ -43,6 +43,11 @@ export default class NewPost extends Component {
     await axios.post(`/api/users/${userId}/posts`, this.state.newPost)
   }
 
+  backToMenu =() => {
+    this.props.toggleShowNewPost()
+    console.log("backToMenu()")
+  }
+
   render() {
     return (
       <NewPostContainer>
@@ -83,6 +88,8 @@ export default class NewPost extends Component {
 
         <Button type="submit" onClick={this.addPost}> Submit </Button>
         </Form>
+
+        <Button onClick={this.backToMenu}> Back to Menu </Button>
 
       </NewPostContainer>
     )

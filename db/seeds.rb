@@ -15,6 +15,11 @@ ivy = User.create(
   emailaddress: "ivy@meowcat.com"
 )
 
+fritz = User.create(
+  username: "Fritzle",
+  emailaddress: "fritzy@gsu.edu"
+)
+
 birdie = Bird.create(
   name: "Crested Beakface",
   description: "Great plumage.",
@@ -27,3 +32,10 @@ some_bird_post = Post.create(
     user_id: ivy.id,
     bird_id: birdie.id
   )
+
+another_bird_post = Post.create(
+  title: "For the Birds",
+  content: "This site is great and all but you know what I think of birds, really? They squeal!",
+  user_id: ivy.id,
+  bird_id: birdie.id
+)

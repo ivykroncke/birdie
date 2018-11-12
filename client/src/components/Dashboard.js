@@ -22,7 +22,7 @@ export default class Dashboard extends Component {
     showUserPosts: false,
     showBrowse: false,
     showNewPost: false,
-    showAllPostsByAllUsers: false,
+    showAllPostsByAllUsers: false
   }
 
   componentDidMount = async () => {
@@ -41,7 +41,6 @@ export default class Dashboard extends Component {
   toggleBrowse = () => {
     this.setState({
       showBrowse: !this.state.showBrowse
-      
     })
   }
 
@@ -69,8 +68,6 @@ export default class Dashboard extends Component {
         userId={this.props.match.params.id}
         refreshPage={this.refreshPage}
         />
-
-      {/* I need to have a switch for if that refresh is on to go to the dash menu */}
 
        { !this.state.showBrowse && 
           !this.state.showUserPosts &&
@@ -102,7 +99,8 @@ export default class Dashboard extends Component {
 
         { this.state.showNewPost ?
           (<NewPost 
-          userId={this.props.match.params.id}/>) : null
+          userId={this.props.match.params.id}
+          toggleShowNewPost={this.toggleShowNewPost} />) : null
         }
 
         { this.state.showAllPostsByAllUsers ?
