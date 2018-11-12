@@ -3,14 +3,15 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Confirm } from 'semantic-ui-react'
 import { HomeWrapper, LightBackground } from './SharedComponents'
 
 export default class EditDeleteUser extends Component {
   state = {
     user: [],
+    open: false,
     goToDashboard: false,
-    backToUsers: false
+    goToLogin: false
   }
 
   componentDidMount = async() => {
@@ -36,19 +37,20 @@ export default class EditDeleteUser extends Component {
   deleteUser = async (userId) => {
     console.log(userId)
     await axios.delete(`/api/users/${userId}`)
-    // this.setState({ goToDashboard: true })
+    this.setState({ goToLogin: true })
   }
+
+  open = () => this.setState({ open: true })
+  close = () => this.setState({ open: false })
 
   render() {
 
     const userId = this.props.match.params.id
-
     if(this.state.goToDashboard) {
       return(<Redirect to={`/users/${userId}/`} />)
     }
-
-    if(this.state.backToUsers) {
-      return(<Redirect to={`/users`} />)
+    if(this.state.goToLogin) {
+      return(<Redirect to={`/users/`} />)
     }
 
     return (
@@ -76,10 +78,16 @@ export default class EditDeleteUser extends Component {
           Submit
           </Button>
         </Form>
+        <div>
+          <Button color="red" onClick={this.open}>
+            Delete this user
+          </Button>
+          <Confirm 
+            open={this.state.open}
+            onCancel={this.close}
+            onConfirm={()=> this.deleteUser(userId)} />
+        </div>
 
-        <Button color="red" onClick={ ( () => this.deleteUser(userId) ) }>
-          Delete this user
-        </Button>
       </LightBackground>
       </HomeWrapper>
     )
