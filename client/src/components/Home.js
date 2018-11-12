@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { Button } from 'semantic-ui-react'
 import { HomeWrapper } from './SharedComponents'
 import { FadeIn } from 'animate-css-styled-components'
+import media from 'styled-media-query'
 
 const AppName = styled.h1`
 padding-top: 8vh;
@@ -15,6 +16,12 @@ const StyledLink = styled(Link)`
 margin: 10vh;
 `
 
+const StyledButton = styled(Button) `
+background-color: blue;
+    ${media.greaterThan('small')`
+      class="huge"
+    `}
+`
 
 export default class Home extends Component {
   render() {
@@ -22,7 +29,7 @@ export default class Home extends Component {
       <FadeIn  duration="2s">
         <HomeWrapper>
           <AppName>birdie</AppName>
-          <StyledLink to="/users"><Button color="black" size="large">Sign In Here</Button></StyledLink>
+          <StyledLink to="/users"><StyledButton color="black" role="button">Sign In Here</StyledButton></StyledLink>
         </HomeWrapper>
       </FadeIn>
 
