@@ -44,8 +44,8 @@ ${media.greaterThan('small')`
 `}
 `
 
-const SiteTitle = styled.h1`
-font-size: 2rem;
+const Feather = styled.img`
+height: 4vh;
 text-shadow: .25rem .25rem 1rem black;
 :hover {
   color: lightgray;
@@ -69,18 +69,20 @@ export default class Nav extends Component {
 
     return (
       <FeaturedImage>
-      <NavContainer>
-        
+        <NavContainer> 
           <div>
-            <SiteTitle onClick={this.props.refreshPage}>birdie</SiteTitle>
+            <Link to={`/users/${userId}/`}>
+              <Feather src="https://i.imgur.com/k5pRXro.png" alt="feather" />
+            </Link>
           </div>
           <div>
             <StyledLinkToUser to={`/users/${userId}/edit`}> 
-            <Icon name="user outline" size="small" />
+              <Icon name="user outline" size="small" />
               {this.props.users.username}
-          </StyledLinkToUser>
+            </StyledLinkToUser>
         </div>
-    </NavContainer>
+
+      </NavContainer>
     </FeaturedImage>
     )
   }

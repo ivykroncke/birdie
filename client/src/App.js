@@ -11,6 +11,7 @@ import ShowOneBird from './components/ShowOneBird';
 const AppWrapper = styled.div`
 @import url('https://fonts.googleapis.com/css?family=Lora|Roboto');
 font-family: Roboto, sans-serif;
+background-color: rgba(59, 75, 78, 0.12);
 a {
   color: inherit;
   text-decoration: none;

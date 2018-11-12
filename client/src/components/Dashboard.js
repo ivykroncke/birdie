@@ -23,7 +23,6 @@ export default class Dashboard extends Component {
     showBrowse: false,
     showNewPost: false,
     showAllPostsByAllUsers: false,
-    redirectPage: false
   }
 
   componentDidMount = async () => {
@@ -57,14 +56,6 @@ export default class Dashboard extends Component {
       showAllPostsByAllUsers: !this.state.showAllPostsByAllUsers
     })
   }
-
-  refreshPage = () => {
-    console.log("Dis page be refreshin y'all")
-    this.setState({
-      redirectPage: true
-    })
-  }
-
 
   render() {
 
