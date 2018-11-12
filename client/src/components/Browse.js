@@ -159,7 +159,7 @@ export default class Browse extends Component {
             return (
                 <div key={i}>
                     <Segment>
-                        <div><Link to={`/users/${this.props.userId}/birds/alcedinidae`} > {bird.FamilyCommonName} </Link></div>
+                        <div><Link to={`/users/${this.props.userId}/birds/${birdFamilyParams}`} > {bird.FamilyCommonName} </Link></div>
                     </Segment>
                 </div>
             )
