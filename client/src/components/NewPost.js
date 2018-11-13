@@ -5,6 +5,7 @@ import axios from 'axios'
 import { Form, Button } from 'semantic-ui-react'
 
 const NewPostContainer = styled.div`
+height: 100%;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -13,6 +14,10 @@ align-items: center;
 
 const StyledHeader = styled.h1`
 padding: 5vh;
+`
+
+const BackButton = styled.div`
+margin: 5vh;
 `
 
 export default class NewPost extends Component {
@@ -52,7 +57,7 @@ export default class NewPost extends Component {
     return (
       <NewPostContainer>
 
-        <StyledHeader>New Post</StyledHeader>
+        <StyledHeader>Record Your Observation</StyledHeader>
         
         <Form>
           <Form.Field>
@@ -89,7 +94,8 @@ export default class NewPost extends Component {
         <Button type="submit" onClick={this.addPost}> Submit </Button>
         </Form>
 
-        <Button onClick={this.backToMenu}> Back to Menu </Button>
+        <BackButton><Button onClick={this.backToMenu}> Back to Menu </Button>
+          </BackButton>
 
       </NewPostContainer>
     )

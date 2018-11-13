@@ -17,6 +17,10 @@ margin: 4vw;
 padding: 2.5vw;
 `
 
+const ButtonWrapper = styled.div`
+margin: 5vh;
+`
+
 export default class AllPostsByAllUsers extends Component {
 
   state = {
@@ -82,7 +86,7 @@ export default class AllPostsByAllUsers extends Component {
       <CommunityContainer>
           <h1>Birdie Community</h1>
           <div>{postsByAllUsers}</div>
-          <div> <Button onClick={this.backToMenu}> Back To Menu </Button> </div> 
+          <ButtonWrapper> <Button onClick={this.backToMenu}> Back To Menu </Button> </ButtonWrapper> 
       </CommunityContainer>
     )
   }

@@ -9,7 +9,7 @@ import ShowOnePost from './components/ShowOnePost';
 import ShowOneBird from './components/ShowOneBird';
 
 const AppWrapper = styled.div`
-height: 100vh;
+height: 100%;
 @import url('https://fonts.googleapis.com/css?family=Lora|Roboto');
 font-family: Roboto, sans-serif;
 background-color: rgba(59, 75, 78, 0.12);
@@ -20,7 +20,7 @@ a {
 h1 {
   font-family: Lora, sans-serif;
   margin: 0 auto;
-  padding: 5vh;
+  padding: 5vh 5vw 2.5vh 5vw;
 }
 `
 

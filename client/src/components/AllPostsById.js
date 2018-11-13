@@ -3,13 +3,8 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Button } from 'semantic-ui-react'
 
-const AllPostsByIdContainer = styled.div`
-color: black;
-`
-
-const AllPostsContainer = styled.div`
-  text-align: center;
-  height: 40vh;
+const AllElementsContainer = styled.div`
+height: 100vh;
 `
 
 const PostContainer = styled.div`
@@ -17,6 +12,10 @@ background-color: lightgray;
 font-size: 1rem;
 margin: 3vh;
 padding: 5vh;
+`
+
+const ButtonContainer = styled.div`
+margin: 5vh;
 `
 
 export default class AllPostsById extends Component {
@@ -29,27 +28,23 @@ export default class AllPostsById extends Component {
 
     const allPosts = this.props.posts.map((post, i) => {
       return (
-        <PostContainer key={i}>
-          <Link to={`/users/${this.props.userId}/posts/${post.id}`}>
+        <Link to={`/users/${this.props.userId}/posts/${post.id}`} key={i}>
+          <PostContainer >
             <h3>{post.title}</h3>
             <div>{post.date}</div>
             <div>{post.content}</div>
-          </Link>
-        </PostContainer>
+            </PostContainer>
+       </Link>
+        
       )
     })
 
     return (
-      <AllPostsByIdContainer>
-       <AllPostsContainer>
+      <AllElementsContainer>
           <h1>Field Guide</h1>
-          <h2>Your Observations</h2>
-          {allPosts}
-        </AllPostsContainer>
-
-       <div> <Button onClick={this.backToMenu}> Back To Menu </Button> </div> 
-
-      </AllPostsByIdContainer>
+          <div>{allPosts}</div>
+       <ButtonContainer> <Button onClick={this.backToMenu}> Back To Menu </Button> </ButtonContainer>
+      </AllElementsContainer>
 
     )
   }

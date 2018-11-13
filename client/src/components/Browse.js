@@ -5,15 +5,25 @@ import { Button, Dropdown, Segment } from 'semantic-ui-react'
 import axios from 'axios'
 import ShowOneBird from './ShowOneBird';
 
-const BrowseContainer = styled.div`
+const AllBrowseContainer = styled.div`
 height: 100%;
+`
+
+const BrowseContainer = styled.div`
+height: 75vh;
 display: flex;
 align-items: center;
 justify-content: space-around;
 flex-direction: column;
-padding: 3vw;
-margin: 3vw;
 `
+
+const ButtonHelper = styled.div`
+margin: 5vh;
+`
+
+// const Droppiedown = styled(Dropdown)`
+// margin: 0 1vw;
+// `
 
 export default class Browse extends Component {
     state = {
@@ -168,7 +178,7 @@ export default class Browse extends Component {
     })
 
     return (
-      <div>
+      <AllBrowseContainer>
         {this.state.taxonomy ? (
             <BrowseContainer>
 
@@ -177,9 +187,9 @@ export default class Browse extends Component {
                 <div>{popularList}</div>
 
                 <h3>Browse Taxonomic Categories Below</h3>
-                <Dropdown placeholder="select Family">
-                   <div>{taxonomyList}</div> 
-                </Dropdown>
+                {/* <Droppiedown>  */}
+                    <Dropdown placeholder="select Family" fluid selection options={taxonomyList} />
+                {/* </Droppiedown> */}
 
             </BrowseContainer>)
             :
@@ -188,8 +198,9 @@ export default class Browse extends Component {
                 userId={this.props.userId}
                 taxonomy={this.state.taxonomy}
                 featuredBird={this.state.featuredBird}/>)}
-        <Button onClick={this.backToMenu}> Back To Menu </Button>
-      </div>
+
+        <ButtonHelper><Button onClick={this.backToMenu}> Back To Menu </Button></ButtonHelper>
+      </AllBrowseContainer>
     )
   }
 }
