@@ -24,11 +24,15 @@ export default class Dashboard extends Component {
     showAllPostsByAllUsers: false
   }
 
-  componentDidMount = async () => {
+  updateState = async () => {
     const userId = this.props.match.params.id
     const response = await axios.get(`/api/users/${userId}`)
     const postResponse = await axios.get(`/api/users/${userId}/posts/`)
-    this.setState({ users: response.data, posts: postResponse.data })  
+    this.setState({ users: response.data, posts: postResponse.data })
+  }
+
+  componentDidMount = async() => {
+    await this.updateState()
   }
 
   toggleAllPostsById = () => {
@@ -100,7 +104,9 @@ export default class Dashboard extends Component {
         { this.state.showNewPost ?
           (<NewPost 
           userId={this.props.match.params.id}
-          toggleShowNewPost={this.toggleShowNewPost} />) : null
+          toggleShowNewPost={this.toggleShowNewPost}
+          toggleAllPostsById={this.toggleAllPostsById}
+          updateState={this.updateState} />) : null
         }
 
         { this.state.showAllPostsByAllUsers ?

@@ -46,11 +46,15 @@ export default class NewPost extends Component {
     event.preventDefault()
     const userId = this.props.userId
     await axios.post(`/api/users/${userId}/posts`, this.state.newPost)
+    this.props.updateState()
+  }
+
+  backToFieldGuide = () => {
+    this.props.toggleAllPostsById()
   }
 
   backToMenu =() => {
     this.props.toggleShowNewPost()
-    console.log("backToMenu()")
   }
 
   render() {
