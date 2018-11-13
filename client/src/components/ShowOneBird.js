@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import styled from 'styled-components'
-
+import { Link } from 'react-router-dom'
 import { Button } from 'semantic-ui-react'
 
 const ShowOneContainer = styled.div`
@@ -21,7 +21,6 @@ const SpeciesButton = styled(Button)`
 margin: 2vh;
 `
 
-
 export default class ShowOneBird extends Component {
   state = {
     birds: []
@@ -38,15 +37,16 @@ export default class ShowOneBird extends Component {
     const birdsInFamily = this.state.birds.map((bird, i) => {
       return (
           <SpeciesButton key={i}>
-            { bird.AcceptedCommonName ? 
+          <Link to={`/users/${this.props.match.params.userId}/birds/${this.props.match.params.id}/taxon/${bird.TaxonID}`}>
+          { bird.AcceptedCommonName ? 
               (bird.AcceptedCommonName):(bird.ScientificName)}
+          </Link>
           </SpeciesButton>
       )
     })
 
     return (
       <ShowOneContainer>
-        {/* <Nav /> */}
         <SpeciesContainer >
           <h1> Featured Species in {this.props.match.params.id} </h1>
           <div>{birdsInFamily}</div>

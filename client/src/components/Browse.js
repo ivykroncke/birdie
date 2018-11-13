@@ -10,10 +10,10 @@ height: 100%;
 `
 
 const BrowseContainer = styled.div`
-height: 75vh;
+height: 60vh;
 display: flex;
 align-items: center;
-justify-content: space-around;
+justify-content: flex-start;
 flex-direction: column;
 `
 
@@ -33,9 +33,6 @@ export default class Browse extends Component {
             SpeciesUrl: ''
         },
         birds: [],
-        popularinGeorgia: [
-            "brown thrasher", "robin", "woodpecker"
-        ],
         georgiaBirds: [ "ducks, geese, and waterfowl", 
         "chachalacas",
         "new world quail",
@@ -130,10 +127,6 @@ export default class Browse extends Component {
         this.setState({birds: filteredGeorgiaBirds})
     }
 
-    filterCommonBirds = () => {
-        //placeholder for suggested birds
-    }
-
         birdCategoriesToState = async () => {
             const response = await axios.get(`/api/birds`)
             const birdData = response.data.Family
@@ -158,14 +151,6 @@ export default class Browse extends Component {
 
   render() {
 
-    const popularList = this.state.popularinGeorgia.map((bird, i) => {
-        return (
-            <Button key={i}>
-                {bird}
-            </Button>
-        )
-    })
-
     const taxonomyList = this.state.birds.map((bird, i) => {
         const birdFamilyParams = bird.FamilyName.toLowerCase()
             return (
@@ -181,16 +166,9 @@ export default class Browse extends Component {
       <AllBrowseContainer>
         {this.state.taxonomy ? (
             <BrowseContainer>
-
                 <h1>Browse</h1>
-                <h3>Browse by Popular Birds</h3>
-                <div>{popularList}</div>
-
                 <h3>Browse Taxonomic Categories Below</h3>
-                {/* <Droppiedown>  */}
                     <Dropdown placeholder="select Family" fluid selection options={taxonomyList} />
-                {/* </Droppiedown> */}
-
             </BrowseContainer>)
             :
             (<ShowOneBird

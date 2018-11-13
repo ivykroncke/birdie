@@ -1,7 +1,6 @@
 class Api::PostsController < ApplicationController
 
     def index
-        # /api/users/:user_id/posts(.:format)
         @posts = User.find(params[:user_id]).post
         render json: @posts
     end

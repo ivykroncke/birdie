@@ -9,7 +9,9 @@ namespace :api do
 end
 
 namespace :api do
-  resources :birds
+  resources :birds do
+    resources :taxons
+  end
 end
 
 end
