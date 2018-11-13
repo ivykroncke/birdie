@@ -1,7 +1,12 @@
-## Birdie
+# Birdie
 ### An Backyard Birdwatching App
 
 This app makes tracking the birds in your own back yard fun. Brag to your friends about your oriole sightings! Track when the hummingbirds start to arrive every year. 
+
+Features:
+* Add Observations to document your bird sightings
+* View all users' observations to see what is going on with other birdwatchers
+* 
 
 View site: https://birdie-app.herokuapp.com/
 
@@ -17,12 +22,19 @@ Technologies Used:
 ### Trello Board: https://trello.com/b/cwk7Xm1A/birdie
 
 ### Wireframes & ERD
-![https://github.com/ivykroncke/birdie/blob/master/README_images/birdie_wireframe.jpg]
-![https://github.com/ivykroncke/birdie/blob/master/README_images/birdie_wireframe_2.jpg]
-![https://github.com/ivykroncke/birdie/blob/master/README_images/birdie_ERD_Components.jpg]
+![WireFrames I](https://github.com/ivykroncke/birdie/blob/master/README_images/birdie_wireframe.jpg)
+![WireFrames II](https://github.com/ivykroncke/birdie/blob/master/README_images/birdie_wireframe_2.jpg)
+![ERD and Component Tree](https://github.com/ivykroncke/birdie/blob/master/README_images/birdie_ERD_Components.jpg)
 
-## Future Dev
-I would like to implement a Favorite Birds feature where users can save their favorite birds to a list to enjoy.
+## Future Development
+
+Favorite Birds: I would like to implement a Favorite Birds feature where users can save their favorite birds to a list to enjoy.
+
+More details: More date stamps and embedded data showing on more pages.
+
+Enhacnements to Community: More ways to find data from other users like searching and tags.
+
+More photos
 
 ## Credits
 
