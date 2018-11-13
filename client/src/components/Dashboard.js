@@ -10,7 +10,7 @@ import NewPost from './NewPost';
 import AllPostsByAllUsers from './AllPostsByAllUsers';
 
 const DashContainer = styled.div`
-height: 100vh;
+height: 100%;
 width: 100vw;
 `
 

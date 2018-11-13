@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import media from 'styled-media-query'
 
 const DashMenuContainer = styled.div`
-height: 60vh;
+height: 100%;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -11,15 +11,21 @@ align-items: center;
 `
 
 const DashGrid = styled.div`
+height: 100%;
 display: grid;
 margin: 5vw;
 grid-gap: 5vw;
 grid-template-columns: 40vw 40vw;
 grid-template-rows: 40vw 40vw;
 
-${media.greaterThan('small')`
+${media.greaterThan('small')` 
+  height: 100%;
   display: flex;
   flex-direction: column;
+`}
+
+${media.greaterThan('medium')`
+  flex-direction: row;
 `}
 `
 
@@ -30,12 +36,19 @@ display: flex;
 justify-content: center;
 align-items: center;
 border-radius: 100%;
+box-shadow: rgb(141, 137, 129) .5rem .5rem 1.5rem;
 
 ${media.greaterThan('small')`
-  padding: 5vw;
+  padding: 3vw;
   width: 80vw;
-  border-radius: 5rem;
+  border-radius: 1rem;
   margin: 2vw;
+`}
+
+${media.greaterThan('medium')`
+  width: 15vw;
+  height: 15vw;
+  border-radius: 100%;
 `}
 `
 
