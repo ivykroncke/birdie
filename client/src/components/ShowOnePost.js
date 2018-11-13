@@ -67,6 +67,7 @@ export default class ShowOnePost extends Component {
         <OnePostLightBackground>
           <h1>{this.state.post.title}</h1>
           <Time>{this.state.post.created_at}</Time>
+          <h2>{this.state.post.birdname}</h2>
           <h3>{this.state.post.content}</h3>
           <OptionsContainer>
             <div>
