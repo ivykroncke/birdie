@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Button } from 'semantic-ui-react'
-import ShowOnePost from './ShowOnePost';
 
 const AllPostsByIdContainer = styled.div`
 color: black;
@@ -21,6 +20,10 @@ padding: 5vh;
 `
 
 export default class AllPostsById extends Component {
+
+  backToMenu = () => {
+    this.props.toggleAllPostsById()
+  }
 
   render() { 
 
@@ -43,6 +46,8 @@ export default class AllPostsById extends Component {
           <h2>Your Observations</h2>
           {allPosts}
         </AllPostsContainer>
+
+       <div> <Button onClick={this.backToMenu}> Back To Menu </Button> </div> 
 
       </AllPostsByIdContainer>
 

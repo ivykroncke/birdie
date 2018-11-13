@@ -124,13 +124,11 @@ export default class Browse extends Component {
         //placeholder for suggested birds
     }
 
-        //this function populates state with bird data
         birdCategoriesToState = async () => {
             const response = await axios.get(`/api/birds`)
             const birdData = response.data.Family
             this.setState({birds: birdData})
             this.commonNameToLowerCase()
-            // these are switches for what to do next
             if(this.state.taxonomy) {
                 this.commonNameToLowerCase()
             } else if(this.state.common) {
