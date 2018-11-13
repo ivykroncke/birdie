@@ -208,7 +208,8 @@ birdCategoriesToState = async () => {
         { this.state.showBrowse ?
           (<Browse 
           toggleBrowse={this.toggleBrowse}  
-          userId={this.props.match.params.id}/>) : null  
+          userId={this.props.match.params.id}
+          birds={this.state.birds}/>) : null  
         }
 
         { this.state.showNewPost ?

@@ -30,11 +30,6 @@ export default class Browse extends Component {
         }
     }
 
-    // componentDidMount = async () => {
-    //     await this.birdCategoriesToState()
-    // }
-
-
     changeToViewOneBird = (SpeciesUrl) => {
         const featuredBird = { ...this.state.featuredBird }
         featuredBird.SpeciesUrl = SpeciesUrl
@@ -47,7 +42,7 @@ export default class Browse extends Component {
 
   render() {
 
-    const taxonomyList = this.state.birds.map((bird, i) => {
+    const taxonomyList = this.props.birds.map((bird, i) => {
         const birdFamilyParams = bird.FamilyName.toLowerCase()
             return (
                 <div key={i}>
