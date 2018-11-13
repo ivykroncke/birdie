@@ -4,9 +4,9 @@
 This app makes tracking the birds in your own back yard fun. Brag to your friends about your oriole sightings! Track when the hummingbirds start to arrive every year. 
 
 Features:
-* Add Observations to document your bird sightings
+* Add Observations to document your bird sightings or view all of your observations
 * View all users' observations to see what is going on with other birdwatchers
-* 
+* Browse birds by taxonomy
 
 View site: https://birdie-app.herokuapp.com/
 

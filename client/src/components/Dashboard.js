@@ -100,7 +100,7 @@ export default class Dashboard extends Component {
     this.setState({ 
       users: response.data, 
       posts: postResponse.data,
-      birds: this.filterGeorgiaBirds })
+      birds: filteredGeorgiaBirds })
   }
 
 filterGeorgiaBirds = (birdData) => {
@@ -110,7 +110,6 @@ filterGeorgiaBirds = (birdData) => {
       )
   })
   this.updateState(filteredGeorgiaBirds)
-  // this.setState({birds: filteredGeorgiaBirds})
 }
 
 commonNameToLowerCase = () => {
@@ -130,11 +129,6 @@ birdCategoriesToState = async () => {
   const birdData = response.data.Family
   this.setState({birds: birdData})
   this.commonNameToLowerCase()
-  if(this.state.taxonomy) {
-      this.commonNameToLowerCase()
-  } else if(this.state.common) {
-      this.filterCommonBirds()
-  }
 }
 
   componentDidMount = async() => {
