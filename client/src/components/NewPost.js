@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import axios from 'axios'
 
-import { Form, Button, Dropdown } from 'semantic-ui-react'
+import { Form, Button, Segment, Dropdown } from 'semantic-ui-react'
 
 const NewPostContainer = styled.div`
-height: 100%;
+height: 80vh;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -26,14 +27,7 @@ export default class NewPost extends Component {
       title: '',
       bird_id: '',
       content: ''
-    },
-    birds: []
-  }
-
-  componentDidMount = async () => {
-    const response = await axios.get('/api/birds')
-    const birdInfo = response.data
-    this.setState({ birds: birdInfo })
+    }
   }
 
   handleChange = (event) => {
@@ -43,11 +37,11 @@ export default class NewPost extends Component {
   }
 
   birdHandleChange = (event) => {
-    const newPost = { ...this.state.newPost }
-    newPost[event.target.name] = event.target.value
-    this.setState({ newPost })
+    console.log(event.target.value)
+    // const newPost = { ...this.state.newPost }
+    // newPost[event.target.name] = event.target.value
+    // this.setState({ newPost })
   }
-
 
   addPost = async (event) => {
     event.preventDefault()
@@ -65,6 +59,17 @@ export default class NewPost extends Component {
   }
 
   render() {
+
+    const taxonomyList = this.props.birds.map((bird, i) => {
+          return (
+              <div key={i} onClick={this.birdHandleChange} value={bird.FamilyCommonName}>
+                  <Segment>
+                      <div> {bird.FamilyCommonName} </div>
+                  </Segment>
+              </div>
+          )
+    })
+
     return (
       <NewPostContainer>
 
@@ -81,15 +86,7 @@ export default class NewPost extends Component {
             </input>
           </Form.Field>
 
-          <Form.Field>
-            <label>Bird</label>
-            <input
-            placeholder="Bird name"
-            type="text"
-            name="bird_id"
-            onChange={this.birdHandleChange}>
-            </input>
-          </Form.Field>
+          <Dropdown placeholder="select Family" fluid selection options={taxonomyList} />
 
           <Form.Field>
             <label>Content</label>

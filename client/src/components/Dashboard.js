@@ -102,7 +102,6 @@ export default class Dashboard extends Component {
 
 
 filterGeorgiaBirds = (birdData) => {
-  console.log('filterGeorgiaBirds')
   const filteredGeorgiaBirds = birdData.filter(bird => {
       return (
           this.state.georgiaBirds.includes(bird.FamilyCommonName)
@@ -112,7 +111,6 @@ filterGeorgiaBirds = (birdData) => {
 }
 
 commonNameToLowerCase = () => {
-  console.log('commonNameToLowerCase')
   const birdsToLowerCase = []
   let birdData = this.state.birds
   birdData.forEach(bird => {
@@ -124,9 +122,7 @@ commonNameToLowerCase = () => {
   this.filterGeorgiaBirds(birdData)
 }
 
-//gets bird data from Axios
 birdCategoriesToState = async () => {
-  console.log('birdCategoriesToState')
   const response = await axios.get(`/api/birds`)
   const birdData = response.data.Family
   this.setState({birds: birdData})
@@ -139,11 +135,8 @@ birdCategoriesToState = async () => {
 }
 
   componentDidMount = async() => {
-    console.log('componentDidMount')
     await this.birdCategoriesToState()
   }
-
-  //View Toggles------------------------------------------------------------
 
   toggleAllPostsById = () => {
     this.setState({
@@ -217,7 +210,8 @@ birdCategoriesToState = async () => {
           userId={this.props.match.params.id}
           toggleShowNewPost={this.toggleShowNewPost}
           toggleAllPostsById={this.toggleAllPostsById}
-          updateState={this.updateState} />) : null
+          updateState={this.updateState} 
+          birds={this.state.birds} />) : null
         }
 
         { this.state.showAllPostsByAllUsers ?

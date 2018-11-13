@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Button, Dropdown, Segment } from 'semantic-ui-react'
-import axios from 'axios'
 import ShowOneBird from './ShowOneBird';
 
 const AllBrowseContainer = styled.div`
