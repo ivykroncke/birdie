@@ -21,7 +21,75 @@ export default class Dashboard extends Component {
     showUserPosts: false,
     showBrowse: false,
     showNewPost: false,
-    showAllPostsByAllUsers: false
+    showAllPostsByAllUsers: false,
+    birds: [],
+    georgiaBirds: [ "ducks, geese, and waterfowl", 
+    "chachalacas",
+    "new world quail",
+    "pheasants, grouse, and allies",
+    "grebes",
+    "pigeons and doves",
+    "cuckoos and anis",
+    "nightjars and allies",
+    "swifts",
+    "hummingbirds",
+    "rails, gallinules, and coots",
+    "limpkin",
+    "cranes",
+    "stilts and avocets",
+    "oystercatchers",
+    "lapwings and plovers",
+    "sandpipers and allies",
+    "skuas and jaegers",
+    "alcids",
+    "gulls, terns, and skimmers",
+    "tropicbirds",
+    "loons",
+    "southern storm-petrels",
+    "northern storm-petrels",
+    "fulmars, petrels, and shearwaters",
+    "storks",
+    "frigatebirds",
+    "boobies and gannets",
+    "cormorants",
+    "anhingas",
+    "pelicans",
+    "bitterns, herons, and egrets",
+    "ibises and spoonbills",
+    "new world vultures",
+    "osprey",
+    "hawks, kites, and eagles",
+    "barn-owls",
+    "typical owls",
+    "kingfishers",
+    "woodpeckers",
+    "falcons and caracaras",
+    "tyrant flycatchers",
+    "shrikes",
+    "vireos",
+    "jays, crows, magpies, and ravens",
+    "larks",
+    "swallows and martins",
+    "chickadees and titmice",
+    "nuthatches",
+    "treecreepers",
+    "wrens",
+    "gnatcatchers",
+    "kinglets",
+    "old world flycatchers",
+    "thrushes",
+    "mockingbirds and thrashers",
+    "starlings",
+    "waxwings",
+    "old world sparrows",
+    "pipits",
+    "finches",
+    "longspurs and snow buntings",
+    "new world sparrows",
+    "yellow-breasted chat",
+    "icterids",
+    "wood-warblers",
+    "cardinals and allies" ]
   }
 
   updateState = async () => {
@@ -31,9 +99,51 @@ export default class Dashboard extends Component {
     this.setState({ users: response.data, posts: postResponse.data })
   }
 
-  componentDidMount = async() => {
-    await this.updateState()
+
+
+filterGeorgiaBirds = (birdData) => {
+  console.log('filterGeorgiaBirds')
+  const filteredGeorgiaBirds = birdData.filter(bird => {
+      return (
+          this.state.georgiaBirds.includes(bird.FamilyCommonName)
+      )
+  })
+  this.setState({birds: filteredGeorgiaBirds})
+}
+
+commonNameToLowerCase = () => {
+  console.log('commonNameToLowerCase')
+  const birdsToLowerCase = []
+  let birdData = this.state.birds
+  birdData.forEach(bird => {
+      let changeBirds = { ...bird }
+      changeBirds.FamilyCommonName = changeBirds.FamilyCommonName.toLowerCase()
+      birdsToLowerCase.push(changeBirds)
+  })
+  birdData = birdsToLowerCase
+  this.filterGeorgiaBirds(birdData)
+}
+
+//gets bird data from Axios
+birdCategoriesToState = async () => {
+  console.log('birdCategoriesToState')
+  const response = await axios.get(`/api/birds`)
+  const birdData = response.data.Family
+  this.setState({birds: birdData})
+  this.commonNameToLowerCase()
+  if(this.state.taxonomy) {
+      this.commonNameToLowerCase()
+  } else if(this.state.common) {
+      this.filterCommonBirds()
   }
+}
+
+  componentDidMount = async() => {
+    console.log('componentDidMount')
+    await this.birdCategoriesToState()
+  }
+
+  //View Toggles------------------------------------------------------------
 
   toggleAllPostsById = () => {
     this.setState({
@@ -98,7 +208,8 @@ export default class Dashboard extends Component {
         { this.state.showBrowse ?
           (<Browse 
           toggleBrowse={this.toggleBrowse}  
-          userId={this.props.match.params.id}/>) : null  
+          userId={this.props.match.params.id}
+          birds={this.state.birds}/>) : null  
         }
 
         { this.state.showNewPost ?
