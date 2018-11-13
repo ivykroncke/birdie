@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import axios from 'axios';
+import { Button } from 'semantic-ui-react'
 
 const CommunityContainer = styled.div`
 display: flex;
@@ -62,6 +63,10 @@ export default class AllPostsByAllUsers extends Component {
     this.getAllUserIds()
   }
 
+  backToMenu = () => {
+    this.props.toggleAllPostsByAllUsers()
+  }
+
   render() {
 
     const postsByAllUsers = this.state.allPosts.map((post, i) => {
@@ -76,7 +81,8 @@ export default class AllPostsByAllUsers extends Component {
     return (
       <CommunityContainer>
           <h1>Birdie Community</h1>
-          {postsByAllUsers}
+          <div>{postsByAllUsers}</div>
+          <div> <Button onClick={this.backToMenu}> Back To Menu </Button> </div> 
       </CommunityContainer>
     )
   }

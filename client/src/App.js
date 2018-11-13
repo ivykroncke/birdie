@@ -19,6 +19,7 @@ a {
 h1 {
   font-family: Lora, sans-serif;
   margin: 0 auto;
+  padding: 5vh;
 }
 `
 

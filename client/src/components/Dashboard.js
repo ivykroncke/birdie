@@ -94,6 +94,7 @@ export default class Dashboard extends Component {
 
         { this.state.showBrowse ?
           (<Browse 
+          toggleBrowse={this.toggleBrowse}  
           userId={this.props.match.params.id}/>) : null  
         }
 
@@ -104,7 +105,8 @@ export default class Dashboard extends Component {
         }
 
         { this.state.showAllPostsByAllUsers ?
-          (<AllPostsByAllUsers />) : (null )
+          (<AllPostsByAllUsers
+            toggleAllPostsByAllUsers={this.toggleAllPostsByAllUsers} />) : (null )
         }
 
       </DashContainer>

@@ -142,6 +142,10 @@ export default class Browse extends Component {
         this.setState({ taxonomy: !this.state.taxonomy, featuredBird })     
     }
 
+    backToMenu = () => {
+        this.props.toggleBrowse()
+    }
+
   render() {
 
     const popularList = this.state.popularinGeorgia.map((bird, i) => {
@@ -184,6 +188,7 @@ export default class Browse extends Component {
                 userId={this.props.userId}
                 taxonomy={this.state.taxonomy}
                 featuredBird={this.state.featuredBird}/>)}
+        <Button onClick={this.backToMenu}> Back To Menu </Button>
       </div>
     )
   }
