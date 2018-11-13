@@ -25,7 +25,7 @@ export default class NewPost extends Component {
   state = {
     newPost: {
       title: '',
-      bird_id: '',
+      birdname: '',
       content: ''
     }
   }
@@ -37,10 +37,11 @@ export default class NewPost extends Component {
   }
 
   birdHandleChange = (event) => {
-    console.log(event.target.value)
-    // const newPost = { ...this.state.newPost }
-    // newPost[event.target.name] = event.target.value
-    // this.setState({ newPost })
+    const birdId = event.target.dataset.value
+    console.log(birdId)
+    const newPost = { ...this.state.newPost }
+    newPost.birdname = birdId
+    this.setState({ newPost })
   }
 
   addPost = async (event) => {
@@ -62,15 +63,16 @@ export default class NewPost extends Component {
 
     const taxonomyList = this.props.birds.map((bird, i) => {
           return (
-              <div key={i} onClick={this.birdHandleChange} value={bird.FamilyCommonName}>
+              <div key={i} onClick={this.birdHandleChange} data-value={bird.FamilyCommonName}>
                   <Segment>
-                      <div> {bird.FamilyCommonName} </div>
+                      <div data-value={bird.FamilyCommonName}>{bird.FamilyCommonName}</div>
                   </Segment>
               </div>
           )
     })
 
     return (
+
       <NewPostContainer>
 
         <StyledHeader>Record Your Observation</StyledHeader>

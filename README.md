@@ -16,7 +16,10 @@ Technologies Used:
 
 ### Trello Board: https://trello.com/b/cwk7Xm1A/birdie
 
-### Wireframes
+### Wireframes & ERD
+![https://github.com/ivykroncke/birdie/blob/master/README_images/birdie_wireframe.jpg]
+![https://github.com/ivykroncke/birdie/blob/master/README_images/birdie_wireframe_2.jpg]
+![https://github.com/ivykroncke/birdie/blob/master/README_images/birdie_ERD_Components.jpg]
 
 ## Future Dev
 I would like to implement a Favorite Birds feature where users can save their favorite birds to a list to enjoy.

@@ -92,14 +92,16 @@ export default class Dashboard extends Component {
     "cardinals and allies" ]
   }
 
-  updateState = async () => {
+  updateState = async (filteredGeorgiaBirds) => {
     const userId = this.props.match.params.id
     const response = await axios.get(`/api/users/${userId}`)
     const postResponse = await axios.get(`/api/users/${userId}/posts/`)
-    this.setState({ users: response.data, posts: postResponse.data })
+    console.log(response.data)
+    this.setState({ 
+      users: response.data, 
+      posts: postResponse.data,
+      birds: this.filterGeorgiaBirds })
   }
-
-
 
 filterGeorgiaBirds = (birdData) => {
   const filteredGeorgiaBirds = birdData.filter(bird => {
@@ -107,7 +109,8 @@ filterGeorgiaBirds = (birdData) => {
           this.state.georgiaBirds.includes(bird.FamilyCommonName)
       )
   })
-  this.setState({birds: filteredGeorgiaBirds})
+  this.updateState(filteredGeorgiaBirds)
+  // this.setState({birds: filteredGeorgiaBirds})
 }
 
 commonNameToLowerCase = () => {
