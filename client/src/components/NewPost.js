@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Dropdown } from 'semantic-ui-react'
 
 const NewPostContainer = styled.div`
 height: 100%;
@@ -24,7 +24,7 @@ export default class NewPost extends Component {
   state = {
     newPost: {
       title: '',
-      bird: '',
+      bird_id: '',
       content: ''
     },
     birds: []
@@ -41,6 +41,13 @@ export default class NewPost extends Component {
     newPost[event.target.name] = event.target.value
     this.setState({ newPost })
   }
+
+  birdHandleChange = (event) => {
+    const newPost = { ...this.state.newPost }
+    newPost[event.target.name] = event.target.value
+    this.setState({ newPost })
+  }
+
 
   addPost = async (event) => {
     event.preventDefault()
@@ -79,8 +86,8 @@ export default class NewPost extends Component {
             <input
             placeholder="Bird name"
             type="text"
-            name=""
-            onChange={this.handleChange}>
+            name="bird_id"
+            onChange={this.birdHandleChange}>
             </input>
           </Form.Field>
 
