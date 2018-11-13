@@ -3,18 +3,6 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Icon } from 'semantic-ui-react'
 import media from 'styled-media-query'
-import axios from 'axios';
-
-// Styled Media Query Sizes: 
-// {
-//   huge: '1440px',
-//   large: '1170px',
-//   medium: '768px',
-//   small: '450px',
-// }
-// lessThan(breakpoint | size)
-// greaterThan(breakpoint | size)
-// between(firstBreakpoint | firstSize, lastBreakpoint | lastSize)
 
 const FeaturedImage = styled.div`
 background: url('https://download.ams.birds.cornell.edu/api/v1/asset/122886361/1200');
@@ -46,6 +34,7 @@ ${media.greaterThan('small')`
 `
 
 const Birdie = styled(Link)`
+font-family: Lora;
 font-size: 2rem;
 text-shadow: .25rem .25rem 1rem black;
 :hover {
@@ -61,7 +50,6 @@ text-shadow: .25rem .25rem 1rem black;
 }
 `
 
-
 export default class Nav extends Component {
 
   state = {
@@ -76,9 +64,7 @@ export default class Nav extends Component {
       <FeaturedImage>
         <NavContainer> 
           <div>
-            <Birdie to={`/users/${userId}/`}>
-              <h1>birdie</h1>
-            </Birdie>
+            <Birdie to={`/users/${userId}/`}>birdie</Birdie>
           </div>
           <div>
             <StyledLinkToUser to={`/users/${userId}/edit`}> 

@@ -4,7 +4,6 @@ import AllPostsById from './AllPostsById'
 import styled from 'styled-components'
 import DashMenu from './DashMenu';
 import axios from 'axios'
-import { Redirect } from 'react-router-dom'
 
 import Browse from './Browse';
 import NewPost from './NewPost';

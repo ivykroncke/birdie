@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
-import styled from 'styled-components'
 
 import { Form, Button, Confirm } from 'semantic-ui-react'
 import { HomeWrapper, LightBackground } from './SharedComponents'
