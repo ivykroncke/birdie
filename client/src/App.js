@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import EditDeleteUser from './components/EditDeleteUser';
 import ShowOnePost from './components/ShowOnePost';
 import ShowOneBird from './components/ShowOneBird';
+import ShowOneTaxon from './components/ShowOneTaxon';
 
 const AppWrapper = styled.div`
 height: 100%;
@@ -36,6 +37,7 @@ class App extends Component {
             <Route exact path="/users/:id/edit/" component={EditDeleteUser} />
             <Route exact path="/users/:userId/posts/:id/" component={ShowOnePost} />
             <Route exact path="/users/:userId/birds/:id/" component={ShowOneBird} />
+            <Route exact path="/users/:userId/birds/:birdId/taxons/:id" component={ShowOneTaxon} />
           </Switch>
         </Router>
       </AppWrapper>

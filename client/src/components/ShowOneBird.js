@@ -37,7 +37,7 @@ export default class ShowOneBird extends Component {
     const birdsInFamily = this.state.birds.map((bird, i) => {
       return (
           <SpeciesButton key={i}>
-          <Link to={`/users/${this.props.match.params.userId}/birds/${this.props.match.params.id}/taxon/${bird.TaxonID}`}>
+          <Link to={`/users/${this.props.match.params.userId}/birds/${this.props.match.params.id}/taxons/${bird.TaxonID}`}>
           { bird.AcceptedCommonName ? 
               (bird.AcceptedCommonName):(bird.ScientificName)}
           </Link>
