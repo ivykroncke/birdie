@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import axios from 'axios'
 
@@ -25,7 +24,7 @@ export default class NewPost extends Component {
   state = {
     newPost: {
       title: '',
-      birdname: '',
+      birdname: 'Select a bird',
       content: ''
     }
   }
@@ -38,7 +37,6 @@ export default class NewPost extends Component {
 
   birdHandleChange = (event) => {
     const birdId = event.target.dataset.value
-    console.log(birdId)
     const newPost = { ...this.state.newPost }
     newPost.birdname = birdId
     this.setState({ newPost })
@@ -48,11 +46,12 @@ export default class NewPost extends Component {
     event.preventDefault()
     const userId = this.props.userId
     await axios.post(`/api/users/${userId}/posts`, this.state.newPost)
-    this.props.updateState()
+    this.backToFieldGuide()
   }
 
   backToFieldGuide = () => {
     this.props.toggleAllPostsById()
+    this.props.toggleShowNewPost()
   }
 
   backToMenu =() => {
@@ -64,9 +63,11 @@ export default class NewPost extends Component {
     const taxonomyList = this.props.birds.map((bird, i) => {
           return (
               <div key={i} onClick={this.birdHandleChange} data-value={bird.FamilyCommonName}>
-                  <Segment>
-                      <div data-value={bird.FamilyCommonName}>{bird.FamilyCommonName}</div>
-                  </Segment>
+                <Segment>
+                  <div data-value={bird.FamilyCommonName}>
+                      {bird.FamilyCommonName}
+                  </div>
+                </Segment>
               </div>
           )
     })
@@ -88,7 +89,7 @@ export default class NewPost extends Component {
             </input>
           </Form.Field>
 
-          <Dropdown placeholder="select Family" fluid selection options={taxonomyList} />
+          <Dropdown placeholder={this.state.newPost.birdname} aria-expanded='false' fluid selection options={taxonomyList} />
 
           <Form.Field>
             <label>Content</label>

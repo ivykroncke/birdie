@@ -77,7 +77,7 @@ export default class ShowOnePost extends Component {
                 onCancel={this.close}
                 onConfirm={()=> this.deletePost(userId)} />
               </div>
-            <Link to={`/users/${userId}/posts/`}><Button>Back</Button></Link>
+            <Link to={`/users/${userId}`}><Button>Back</Button></Link>
           </OptionsContainer>
         </OnePostLightBackground>
       </HomeWrapper>

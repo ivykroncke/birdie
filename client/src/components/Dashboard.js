@@ -96,7 +96,6 @@ export default class Dashboard extends Component {
     const userId = this.props.match.params.id
     const response = await axios.get(`/api/users/${userId}`)
     const postResponse = await axios.get(`/api/users/${userId}/posts/`)
-    console.log(response.data)
     this.setState({ 
       users: response.data, 
       posts: postResponse.data,
@@ -187,28 +186,28 @@ birdCategoriesToState = async () => {
 
         { this.state.showUserPosts ? 
           (<div>
-              <AllPostsById 
-                posts={this.state.posts}
-                toggleAllPostsById={this.toggleAllPostsById}
-                userId={this.props.match.params.id} />
+            <AllPostsById 
+              posts={this.state.posts}
+              toggleAllPostsById={this.toggleAllPostsById}
+              userId={this.props.match.params.id} />
             </div>)
           : null
         }       
 
         { this.state.showBrowse ?
           (<Browse 
-          toggleBrowse={this.toggleBrowse}  
-          userId={this.props.match.params.id}
-          birds={this.state.birds}/>) : null  
+            toggleBrowse={this.toggleBrowse}  
+            userId={this.props.match.params.id}
+            birds={this.state.birds}/>) : null  
         }
 
         { this.state.showNewPost ?
           (<NewPost 
-          userId={this.props.match.params.id}
-          toggleShowNewPost={this.toggleShowNewPost}
-          toggleAllPostsById={this.toggleAllPostsById}
-          updateState={this.updateState} 
-          birds={this.state.birds} />) : null
+            userId={this.props.match.params.id}
+            toggleShowNewPost={this.toggleShowNewPost}
+            toggleAllPostsById={this.toggleAllPostsById}
+            updateState={this.updateState} 
+            birds={this.state.birds} />) : null
         }
 
         { this.state.showAllPostsByAllUsers ?
