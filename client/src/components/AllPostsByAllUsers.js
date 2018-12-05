@@ -21,6 +21,20 @@ const ButtonWrapper = styled.div`
 margin: 5vh;
 `
 
+const PostTitle = styled.div`
+font-size: 1rem;
+font-family: Lora;
+font-weight: bold;
+`
+
+const PostAuthor = styled.div`
+padding: .25rem;
+`
+
+const PostContent = styled.div`
+padding: .25rem;
+`
+
 export default class AllPostsByAllUsers extends Component {
 
   state = {
@@ -28,8 +42,18 @@ export default class AllPostsByAllUsers extends Component {
     allPosts: []
   }
 
+  getUserInfo = (usersPosts) => {
+    const usersPostsWithUserNames = usersPosts.map((post, i) => {
+      const thisPostId = post.user_id
+      const findUsername = this.state.users.find(u => u.id === thisPostId)
+      post.username = findUsername.username
+      return post
+    })
+    this.setState({ allPosts: usersPostsWithUserNames})
+  }
+
   setAllPostsState = (usersPosts) => {
-    this.setState({ allPosts: usersPosts})
+    this.getUserInfo(usersPosts)
   }
   
   splitPosts = (allPosts) => {
@@ -53,7 +77,6 @@ export default class AllPostsByAllUsers extends Component {
     this.splitPosts(allPosts)
   }
  
-
   getAllUserIds = () => {
     const allUsersIds = this.state.users.map((user, i) => {
       return user.id
@@ -76,8 +99,9 @@ export default class AllPostsByAllUsers extends Component {
     const postsByAllUsers = this.state.allPosts.map((post, i) => {
       return ( 
         <CommentContainer key={i}>
-          <div>{post.title}</div>
-          <div>{post.content}</div>
+          <PostTitle>{post.title}</PostTitle>
+          <PostContent>{post.content}</PostContent>
+          <PostAuthor>user: {post.username} {post.created_at}</PostAuthor>
         </CommentContainer>
       )
     })
