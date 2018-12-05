@@ -28,29 +28,50 @@ const CenterButton = styled.div`
 padding: 3vh;
 `
 
+const StyledH2 = styled.h2`
+text-align: center;
+`
+
+const BirdImage = styled.img`
+width: 40vw;
+margin: 5vh;
+`
+
 export default class ShowOneTaxon extends Component {
     state = {
         taxon: {}
+    }
+
+    fixImage = async (SpeciesData) => {
+      const img = SpeciesData.Profile.Image.URL
+      SpeciesData.ImageURL = img
+      this.setState({ taxon: SpeciesData })
     }
 
     componentDidMount = async () => {
         const birdId = this.props.match.params.birdId
         const taxonId = this.props.match.params.id
         const taxonData = await axios.get(`/api/birds/${birdId}/taxons/${taxonId}`)
-        this.setState({ taxon: taxonData.data.Species })
+        const SpeciesData = taxonData.data.Species
+        this.fixImage(SpeciesData)
     }
 
   render() {
+    const img = this.state.taxon.ImageURL
+    console.log(this.state.taxon.ImageURL)
 
     return (
       <PageDiv>
         <TaxonContainer>
+
           <Feather src='https://i.imgur.com/5DDRIkN.png' alt='feather'/>
           <div>
             <h1>{this.state.taxon.AcceptedCommonName}</h1>
-            <h2>Family: {this.state.taxon.FamilyCommonName}</h2>
+            <StyledH2>Family: {this.state.taxon.FamilyCommonName}</StyledH2>
           </div>
-        {/* <div>{this.state.taxon.Profile.Image}</div> */}
+          <BirdImage src={img} alt="bird" />
+          <div>Scientific Name: {this.state.taxon.ScientificName}</div>
+          <div>Discovered By: {this.state.taxon.TaxonomyAuthor}/</div>
         </TaxonContainer>
         <CenterButton><Link to={`/users/${this.props.match.params.userId}/birds/${this.props.match.params.birdId}/`}>
             <Button>Back</Button></Link></CenterButton>
