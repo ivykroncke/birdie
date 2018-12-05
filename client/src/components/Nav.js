@@ -64,7 +64,7 @@ export default class Nav extends Component {
       <FeaturedImage>
         <NavContainer> 
           <div>
-            <Birdie to={`/users/${userId}/`}>birdie</Birdie>
+            <Birdie to={`/`}>birdie</Birdie>
           </div>
           <div>
             <StyledLinkToUser to={`/users/${userId}/edit`}> 

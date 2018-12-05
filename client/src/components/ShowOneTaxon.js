@@ -18,6 +18,7 @@ display: flex;
 flex-direction: column;
 justify-content: flex-start;
 align-items: center;
+text-align: center;
 `
 
 const Feather = styled.img`
@@ -43,8 +44,10 @@ export default class ShowOneTaxon extends Component {
     }
 
     fixImage = async (SpeciesData) => {
-      const img = SpeciesData.Profile.Image.URL
-      SpeciesData.ImageURL = img
+      if (SpeciesData.Profile.Image.URL) {
+        const img = SpeciesData.Profile.Image.URL
+        SpeciesData.ImageURL = img
+      } 
       this.setState({ taxon: SpeciesData })
     }
 
@@ -69,9 +72,9 @@ export default class ShowOneTaxon extends Component {
             <h1>{this.state.taxon.AcceptedCommonName}</h1>
             <StyledH2>Family: {this.state.taxon.FamilyCommonName}</StyledH2>
           </div>
-          <BirdImage src={img} alt="bird" />
+          {img ? (<BirdImage src={img} alt="bird" />):null}
           <div>Scientific Name: {this.state.taxon.ScientificName}</div>
-          <div>Discovered By: {this.state.taxon.TaxonomyAuthor}/</div>
+          <div>Discovered By: {this.state.taxon.TaxonomyAuthor}</div>
         </TaxonContainer>
         <CenterButton><Link to={`/users/${this.props.match.params.userId}/birds/${this.props.match.params.birdId}/`}>
             <Button>Back</Button></Link></CenterButton>
